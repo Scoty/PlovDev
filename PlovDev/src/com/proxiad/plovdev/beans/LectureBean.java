@@ -9,6 +9,20 @@ public class LectureBean {
 	private String description;
 	private SpeakerBean speaker;
 
+	public LectureBean() {
+		super();
+	}
+
+	public LectureBean(Timestamp beginHour, Timestamp endHour, String name, String description, SpeakerBean speaker) {
+		super();
+		this.beginHour = beginHour;
+		this.endHour = endHour;
+		this.name = name;
+		this.description = description;
+		this.speaker = speaker;
+		this.speaker.getLectures().add(this); //auto add current lecture to the list! null ?!?
+	}
+
 	public Timestamp getBeginHour() {
 		return beginHour;
 	}

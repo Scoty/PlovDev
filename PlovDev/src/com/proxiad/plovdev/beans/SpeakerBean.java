@@ -6,17 +6,29 @@ import android.graphics.Bitmap;
 
 public class SpeakerBean {
 
-	private Bitmap speakerPortrait;
+	private Bitmap portrait;
 	private String name;
 	private String bio;
 	private List<LectureBean> lectures;
 
-	public Bitmap getSpeakerPortrait() {
-		return speakerPortrait;
+	public SpeakerBean() {
+		super();
+	}
+	
+	public SpeakerBean(Bitmap portrait, String name, String bio, List<LectureBean> lectures) {
+		super();
+		this.portrait = portrait;
+		this.name = name;
+		this.bio = bio;
+		this.lectures = lectures;
 	}
 
-	public void setSpeakerPortrait(Bitmap speakerPortrait) {
-		this.speakerPortrait = speakerPortrait;
+	public Bitmap getPortrait() {
+		return portrait;
+	}
+
+	public void setPortrait(Bitmap portrait) {
+		this.portrait = portrait;
 	}
 
 	public String getName() {
