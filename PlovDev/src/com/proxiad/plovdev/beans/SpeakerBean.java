@@ -2,11 +2,11 @@ package com.proxiad.plovdev.beans;
 
 import java.util.List;
 
-import android.graphics.Bitmap;
+import android.widget.ImageView;
 
 public class SpeakerBean {
 
-	private Bitmap portrait;
+	private ImageView portrait;
 	private String name;
 	private String bio;
 	private List<LectureBean> lectures;
@@ -15,7 +15,7 @@ public class SpeakerBean {
 		super();
 	}
 	
-	public SpeakerBean(Bitmap portrait, String name, String bio, List<LectureBean> lectures) {
+	public SpeakerBean(ImageView portrait, String name, String bio, List<LectureBean> lectures) {
 		super();
 		this.portrait = portrait;
 		this.name = name;
@@ -23,11 +23,11 @@ public class SpeakerBean {
 		this.lectures = lectures;
 	}
 
-	public Bitmap getPortrait() {
+	public ImageView getPortrait() {
 		return portrait;
 	}
 
-	public void setPortrait(Bitmap portrait) {
+	public void setPortrait(ImageView portrait) {
 		this.portrait = portrait;
 	}
 

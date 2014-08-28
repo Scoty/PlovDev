@@ -1,7 +1,17 @@
 package com.proxiad.plovdev;
 
-import android.app.Fragment;
+import android.app.ListFragment;
+import android.os.Bundle;
 
-public class PartnersFragment extends Fragment {
+import com.proxiad.plovdev.adapters.PartnerAdapter;
+import com.proxiad.plovdev.utils.DataParser;
 
+public class PartnersFragment extends ListFragment {
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		PartnerAdapter adapter = new PartnerAdapter(getActivity(), DataParser.getPartners());
+		setListAdapter(adapter);
+	}
 }
