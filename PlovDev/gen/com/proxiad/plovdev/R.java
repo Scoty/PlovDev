@@ -405,23 +405,28 @@ containing a value of this type.
         public static final int common_signin_btn_text_pressed_dark=0x7f020016;
         public static final int common_signin_btn_text_pressed_light=0x7f020017;
         public static final int drawer_shadow=0x7f020018;
-        public static final int hackafe=0x7f020019;
-        public static final int ic_drawer=0x7f02001a;
-        public static final int ic_launcher=0x7f02001b;
-        public static final int ic_plusone_medium_off_client=0x7f02001c;
-        public static final int ic_plusone_small_off_client=0x7f02001d;
-        public static final int ic_plusone_standard_off_client=0x7f02001e;
-        public static final int ic_plusone_tall_off_client=0x7f02001f;
-        public static final int mediacafe=0x7f020020;
-        public static final int powered_by_google_dark=0x7f020021;
-        public static final int powered_by_google_light=0x7f020022;
-        public static final int proxiad=0x7f020023;
-        public static final int ptx=0x7f020024;
-        public static final int pu_ss=0x7f020025;
+        public static final int ic_drawer=0x7f020019;
+        public static final int ic_launcher=0x7f02001a;
+        public static final int ic_plusone_medium_off_client=0x7f02001b;
+        public static final int ic_plusone_small_off_client=0x7f02001c;
+        public static final int ic_plusone_standard_off_client=0x7f02001d;
+        public static final int ic_plusone_tall_off_client=0x7f02001e;
+        public static final int partner_hackafe=0x7f02001f;
+        public static final int partner_media_cafe=0x7f020020;
+        public static final int partner_proxiad=0x7f020021;
+        public static final int partner_ptx=0x7f020022;
+        public static final int partner_pu_ss=0x7f020023;
+        public static final int powered_by_google_dark=0x7f020024;
+        public static final int powered_by_google_light=0x7f020025;
+        public static final int speaker_anton_antonov=0x7f020026;
+        public static final int speaker_genadi_ivanov=0x7f020027;
+        public static final int speaker_mark_rogers=0x7f020028;
+        public static final int speaker_zdravko_nestorov=0x7f020029;
     }
     public static final class id {
-        public static final int action_example=0x7f07001d;
-        public static final int action_settings=0x7f07001c;
+        public static final int action_example=0x7f07001f;
+        public static final int action_settings=0x7f07001e;
+        public static final int bioSpeaker=0x7f07001d;
         public static final int book_now=0x7f070010;
         public static final int buyButton=0x7f07000a;
         public static final int buy_now=0x7f07000f;
@@ -434,10 +439,11 @@ containing a value of this type.
         public static final int holo_dark=0x7f070005;
         public static final int holo_light=0x7f070006;
         public static final int hybrid=0x7f070004;
-        public static final int imageView1=0x7f070018;
+        public static final int imageSpeakerPortrait=0x7f070018;
         public static final int map=0x7f070017;
         public static final int match_parent=0x7f07000c;
         public static final int monochrome=0x7f070013;
+        public static final int nameSpeaker=0x7f07001c;
         public static final int navigation_drawer=0x7f070016;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
@@ -459,9 +465,11 @@ containing a value of this type.
         public static final int fragment_main=0x7f030001;
         public static final int fragment_navigation_drawer=0x7f030002;
         public static final int fragment_partners=0x7f030003;
-        public static final int fragment_venue=0x7f030004;
-        public static final int row_lecture=0x7f030005;
-        public static final int row_partner=0x7f030006;
+        public static final int fragment_speakers=0x7f030004;
+        public static final int fragment_venue=0x7f030005;
+        public static final int row_lecture=0x7f030006;
+        public static final int row_partner=0x7f030007;
+        public static final int row_speaker=0x7f030008;
     }
     public static final class menu {
         public static final int global=0x7f0a0000;

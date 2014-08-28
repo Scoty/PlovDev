@@ -1,7 +1,18 @@
 package com.proxiad.plovdev;
 
-import android.app.Fragment;
+import android.app.ListFragment;
+import android.os.Bundle;
 
-public class SpeakersFragment extends Fragment {
+import com.proxiad.plovdev.adapters.SpeakerAdapter;
+import com.proxiad.plovdev.utils.DataParser;
+
+public class SpeakersFragment extends ListFragment {
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		SpeakerAdapter adapter = new SpeakerAdapter(getActivity(), DataParser.getSpeakers());
+		setListAdapter(adapter);
+	}
 
 }

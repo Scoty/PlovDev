@@ -5,28 +5,28 @@
 
     <ImageView
         android:id="@+id/imageSpeakerPortrait"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/timePeriod"
+        android:id="@+id/nameSpeaker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imageSpeakerPortrait"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_below="@+id/imageSpeakerPortrait"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/bioSpeaker"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_below="@+id/timePeriod"
-        android:layout_toRightOf="@+id/imageSpeakerPortrait"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameSpeaker"
+        android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>
