@@ -14,5 +14,12 @@ public class MainFragment extends ListFragment {
 		LectureAdapter adapter = new LectureAdapter(getActivity(), DataParser.getLectures());
 		setListAdapter(adapter);
 	}
+	
+	@Override
+	public void onResume() {
+	    super.onResume();
+	    getActivity().getActionBar().setTitle(R.string.first_day);
+	    ((MainActivity) getActivity()).getNavigationDrawerFragment().setCurrentPosition(0);
+	}
 
 }

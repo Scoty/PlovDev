@@ -32,15 +32,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LectureDetailsActivity"
+            android:label="@string/lecture_details"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCxKq5BE9MZ3P2MURAJo3VGrWye6Y9uekg" />
+            android:value="AIzaSyBYYl3toum78zAy_m_px-6t2hrTNNUX998" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
     </application>
-	<uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true"/>
+
 </manifest>

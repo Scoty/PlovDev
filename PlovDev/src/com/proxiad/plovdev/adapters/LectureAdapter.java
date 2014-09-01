@@ -2,16 +2,20 @@ package com.proxiad.plovdev.adapters;
 
 import java.util.List;
 
-import com.proxiad.plovdev.R;
-import com.proxiad.plovdev.beans.LectureBean;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.proxiad.plovdev.LectureDetailsActivity;
+import com.proxiad.plovdev.R;
+import com.proxiad.plovdev.beans.LectureBean;
 
 public class LectureAdapter extends ArrayAdapter<LectureBean> {
 
@@ -26,7 +30,7 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 		this.itemsArrayList = itemsArrayList;
 	}
 
-	@Override
+	@SuppressLint("ViewHolder") @Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		// 1. Create inflater
@@ -45,7 +49,26 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 		timePeriodView.setText(itemsArrayList.get(position).getName());
 		descriptionView.setText(itemsArrayList.get(position).getDescription());
 
+		OnTextClickedListener listener = new OnTextClickedListener(position);
+		timePeriodView.setOnClickListener(listener);
+		descriptionView.setOnClickListener(listener);
+		
 		// 5. return rowView
 		return rowView;
+	}
+
+	private class OnTextClickedListener implements OnClickListener {
+		private int position;
+
+		private OnTextClickedListener(int position) {
+			this.position = position;
+		}
+
+		@Override
+		public void onClick(View view) {
+			Intent intent = new Intent(context, LectureDetailsActivity.class);
+		    intent.putExtra("position", position);
+		    context.startActivity(intent);
+		}
 	}
 }

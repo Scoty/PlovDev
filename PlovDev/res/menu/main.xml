@@ -3,9 +3,9 @@
     tools:context="com.proxiad.plovdev.MainActivity" >
 
     <item
-        android:id="@+id/action_example"
+        android:id="@+id/action_refresh"
         android:showAsAction="withText|ifRoom"
-        android:title="@string/action_example"/>
+        android:title="@string/action_refresh"/>
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"

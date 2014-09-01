@@ -14,4 +14,11 @@ public class PartnersFragment extends ListFragment {
 		PartnerAdapter adapter = new PartnerAdapter(getActivity(), DataParser.getPartners());
 		setListAdapter(adapter);
 	}
+	
+	@Override
+	public void onResume() {
+	    super.onResume();
+	    getActivity().getActionBar().setTitle(R.string.partners);
+	    ((MainActivity) getActivity()).getNavigationDrawerFragment().setCurrentPosition(3);
+	}
 }

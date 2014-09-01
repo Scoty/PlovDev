@@ -2,39 +2,51 @@ package com.proxiad.plovdev;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class VenueFragment extends Fragment {
-	static final LatLng HAMBURG = new LatLng(53.558, 9.927);
-	static final LatLng KIEL = new LatLng(53.551, 9.993);
+
+	private final LatLng PLOVDEV = new LatLng(42.156460, 24.754438);
+
+	private View rootView;
 	private GoogleMap map;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		
-		View rootView = inflater.inflate(R.layout.fragment_venue, container, false);
+
+		if (rootView != null) {
+			ViewGroup parent = (ViewGroup) rootView.getParent();
+			if (parent != null)
+				parent.removeView(rootView);
+		}
+		try {
+			rootView = inflater.inflate(R.layout.fragment_venue, container, false);
+			map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+			map.addMarker(new MarkerOptions().position(PLOVDEV).title("PlovDev Location").snippet("бул. ћарица, на около 200м от панаирни€ мост"))
+					.showInfoWindow();
+			map.animateCamera(CameraUpdateFactory.newLatLngZoom(PLOVDEV, 15));
+		} catch (InflateException e) {
+			map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+			map.addMarker(new MarkerOptions().position(PLOVDEV).title("PlovDev Location").snippet("бул. ћарица, на около 200м от панаирни€ мост"))
+					.showInfoWindow();
+			map.animateCamera(CameraUpdateFactory.newLatLngZoom(PLOVDEV, 15));
+		}
 		return rootView;
 	}
 	
-//	@Override
-//	public void onActivityCreated(Bundle savedInstanceState) {
-//		map = ((VenueFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-//
-//		if (map != null) {
-//			Marker hamburg = map.addMarker(new MarkerOptions().position(HAMBURG).title("Hamburg"));
-//			Marker kiel = map.addMarker(new MarkerOptions().position(KIEL).title("Kiel").snippet("Kiel is cool")
-//					.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher)));
-//		}
-//		// Move the camera instantly to hamburg with a zoom of 15.
-//		map.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 15));
-//
-//		// Zoom in, animating the camera.
-//		map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
-//	}
-
+	@Override
+	public void onResume() {
+	    super.onResume();
+	    getActivity().getActionBar().setTitle(R.string.venue);
+	    ((MainActivity) getActivity()).getNavigationDrawerFragment().setCurrentPosition(2);
+	}
 }

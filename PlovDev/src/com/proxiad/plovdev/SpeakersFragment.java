@@ -14,5 +14,12 @@ public class SpeakersFragment extends ListFragment {
 		SpeakerAdapter adapter = new SpeakerAdapter(getActivity(), DataParser.getSpeakers());
 		setListAdapter(adapter);
 	}
+	
+	@Override
+	public void onResume() {
+	    super.onResume();
+	    getActivity().getActionBar().setTitle(R.string.speakers);
+	    ((MainActivity) getActivity()).getNavigationDrawerFragment().setCurrentPosition(1);
+	}
 
 }

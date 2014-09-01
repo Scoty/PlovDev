@@ -3,6 +3,12 @@ package com.proxiad.plovdev.adapters;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Shader.TileMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +18,7 @@ import android.widget.TextView;
 
 import com.proxiad.plovdev.R;
 import com.proxiad.plovdev.beans.SpeakerBean;
+import com.proxiad.plovdev.utils.DataParser;
 
 public class SpeakerAdapter extends ArrayAdapter<SpeakerBean> {
 
@@ -41,19 +48,14 @@ public class SpeakerAdapter extends ArrayAdapter<SpeakerBean> {
 		TextView bioSpeakerView = (TextView) rowView.findViewById(R.id.bioSpeaker);
 
 		// 4. Set the image and the click listener for textView
-		speakerImageView.setImageResource(itemsArrayList.get(position).getPortraitId());
+
+		speakerImageView.setImageBitmap(DataParser.getRoundedImage(position, context, itemsArrayList));
 		nameSpeakerView.setText(itemsArrayList.get(position).getName());
 		bioSpeakerView.setText(itemsArrayList.get(position).getBio());
-		// partnerImageView.setOnClickListener(new View.OnClickListener(){
-		// public void onClick(View v){
-		// Intent intent = new Intent(Intent.ACTION_VIEW,
-		// Uri.parse(itemsArrayList.get(position).getUrlLink()));
-		// context.startActivity(intent);
-		// }
-		// });
 
 		// 5. return rowView
 		return rowView;
 	}
+
 
 }
