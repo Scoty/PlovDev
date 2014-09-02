@@ -30,7 +30,9 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 		this.itemsArrayList = itemsArrayList;
 	}
 
-	@SuppressLint("ViewHolder") @Override
+	@SuppressWarnings("deprecation")
+	@SuppressLint({ "ViewHolder", "DefaultLocale" })
+	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		// 1. Create inflater
@@ -45,14 +47,22 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 		TextView descriptionView = (TextView) rowView.findViewById(R.id.description);
 
 		// 4. Set the text for textView and the image for the imageView
-		imageSpeakerPortraitView.setImageResource(itemsArrayList.get(position).getSpeaker().getPortraitId());
-		timePeriodView.setText(itemsArrayList.get(position).getName());
+		LectureBean lecture = itemsArrayList.get(position);
+		imageSpeakerPortraitView.setImageResource(lecture.getSpeaker().getPortraitId());
+
+		String beginHour = String.format("%02d", lecture.getBeginHour().getHours());
+		String beginMinutes = String.format("%02d", lecture.getBeginHour().getMinutes());
+		String endHour = String.format("%02d", lecture.getEndHour().getHours());
+		String endMinutes = String.format("%02d", lecture.getEndHour().getMinutes());
+		String timePeriodName = "(" + beginHour + ":" + beginMinutes + " - " + endHour + ":" + endMinutes + ") " + lecture.getName();
+		timePeriodView.setText(timePeriodName);
+
 		descriptionView.setText(itemsArrayList.get(position).getDescription());
 
 		OnTextClickedListener listener = new OnTextClickedListener(position);
 		timePeriodView.setOnClickListener(listener);
 		descriptionView.setOnClickListener(listener);
-		
+
 		// 5. return rowView
 		return rowView;
 	}
@@ -67,8 +77,8 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 		@Override
 		public void onClick(View view) {
 			Intent intent = new Intent(context, LectureDetailsActivity.class);
-		    intent.putExtra("position", position);
-		    context.startActivity(intent);
+			intent.putExtra("position", position);
+			context.startActivity(intent);
 		}
 	}
 }

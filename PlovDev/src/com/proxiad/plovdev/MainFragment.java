@@ -3,7 +3,7 @@ package com.proxiad.plovdev;
 import com.proxiad.plovdev.adapters.LectureAdapter;
 import com.proxiad.plovdev.utils.DataParser;
 
-import android.app.ListFragment;
+import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 
 public class MainFragment extends ListFragment {

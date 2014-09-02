@@ -1,15 +1,15 @@
 package com.proxiad.plovdev;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+public class MainActivity extends FragmentActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
 	@SuppressWarnings("unused")
 	private Bundle savedInstanceState;
@@ -37,7 +37,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 
 		this.savedInstanceState = savedInstanceState;
 
-		mNavigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
+		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 		mTitle = getTitle();
 
 		// Set up the drawer.
@@ -47,7 +47,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
-		FragmentManager fragmentManager = getFragmentManager();
+		FragmentManager fragmentManager = getSupportFragmentManager();
 		switch (position) {
 		case 0:
 			mTitle = getString(R.string.first_day);
@@ -66,10 +66,14 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 			Fragment speakersFragment = fragmentManager.findFragmentByTag(speakersFragmentTag);
 			if (speakersFragment == null) {
 				speakersFragment = new SpeakersFragment();
-				fragmentManager.beginTransaction().replace(R.id.container, speakersFragment, speakersFragmentTag).addToBackStack(speakersFragmentTag)
-						.commit();
+				if (!speakersFragment.isAdded()) {
+					fragmentManager.beginTransaction().replace(R.id.container, speakersFragment, speakersFragmentTag)
+							.addToBackStack(speakersFragmentTag).commit();
+				}
 			}
-			fragmentManager.beginTransaction().replace(R.id.container, speakersFragment, speakersFragmentTag).commit();
+			if (!speakersFragment.isAdded()) {
+				fragmentManager.beginTransaction().replace(R.id.container, speakersFragment, speakersFragmentTag).commit();
+			}
 			break;
 		case 2:
 			mTitle = getString(R.string.venue);
@@ -77,9 +81,14 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 			Fragment venueFragment = fragmentManager.findFragmentByTag(venueFragmentTag);
 			if (venueFragment == null) {
 				venueFragment = new VenueFragment();
-				fragmentManager.beginTransaction().replace(R.id.container, venueFragment, venueFragmentTag).addToBackStack(venueFragmentTag).commit();
+				if (!venueFragment.isAdded()) {
+					fragmentManager.beginTransaction().replace(R.id.container, venueFragment, venueFragmentTag).addToBackStack(venueFragmentTag)
+							.commit();
+				}
 			}
-			fragmentManager.beginTransaction().replace(R.id.container, venueFragment, venueFragmentTag).commit();
+			if (!venueFragment.isAdded()) {
+				fragmentManager.beginTransaction().replace(R.id.container, venueFragment, venueFragmentTag).commit();
+			}
 			break;
 		case 3:
 			mTitle = getString(R.string.partners);
@@ -87,10 +96,14 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 			Fragment partnersFragment = fragmentManager.findFragmentByTag(partnersFragmentTag);
 			if (partnersFragment == null) {
 				partnersFragment = new PartnersFragment();
-				fragmentManager.beginTransaction().replace(R.id.container, partnersFragment, partnersFragmentTag).addToBackStack(partnersFragmentTag)
-						.commit();
+				if (!partnersFragment.isAdded()) {
+					fragmentManager.beginTransaction().replace(R.id.container, partnersFragment, partnersFragmentTag)
+							.addToBackStack(partnersFragmentTag).commit();
+				}
 			}
-			fragmentManager.beginTransaction().replace(R.id.container, partnersFragment, partnersFragmentTag).commit();
+			if (!partnersFragment.isAdded()) {
+				fragmentManager.beginTransaction().replace(R.id.container, partnersFragment, partnersFragmentTag).commit();
+			}
 		}
 	}
 

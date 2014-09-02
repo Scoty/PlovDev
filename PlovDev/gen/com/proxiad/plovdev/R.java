@@ -426,7 +426,7 @@ containing a value of this type.
     public static final class id {
         public static final int action_refresh=0x7f070023;
         public static final int action_settings=0x7f070022;
-        public static final int bioSpeaker=0x7f070021;
+        public static final int bioSpeaker=0x7f07001b;
         public static final int book_now=0x7f070010;
         public static final int buyButton=0x7f07000a;
         public static final int buy_now=0x7f07000f;
@@ -434,31 +434,31 @@ containing a value of this type.
         public static final int classic=0x7f070011;
         public static final int container=0x7f070018;
         public static final int descLecture=0x7f070016;
-        public static final int description=0x7f07001e;
+        public static final int description=0x7f070020;
         public static final int drawer_layout=0x7f070017;
         public static final int grayscale=0x7f070012;
         public static final int holo_dark=0x7f070005;
         public static final int holo_light=0x7f070006;
         public static final int hybrid=0x7f070004;
         public static final int imageSpeakerPortrait=0x7f070014;
-        public static final int map=0x7f07001a;
+        public static final int map_container=0x7f07001c;
         public static final int match_parent=0x7f07000c;
         public static final int monochrome=0x7f070013;
         public static final int nameLecture=0x7f070015;
-        public static final int nameSpeaker=0x7f070020;
+        public static final int nameSpeaker=0x7f07001a;
         public static final int navigation_drawer=0x7f070019;
         public static final int none=0x7f070000;
         public static final int normal=0x7f070001;
-        public static final int partnerImageView=0x7f07001f;
+        public static final int partnerImageView=0x7f070021;
         public static final int production=0x7f070007;
-        public static final int public_transport_label=0x7f07001b;
-        public static final int public_transport_lines=0x7f07001c;
+        public static final int public_transport_label=0x7f07001d;
+        public static final int public_transport_lines=0x7f07001e;
         public static final int sandbox=0x7f070008;
         public static final int satellite=0x7f070002;
         public static final int selectionDetails=0x7f07000b;
         public static final int strict_sandbox=0x7f070009;
         public static final int terrain=0x7f070003;
-        public static final int timePeriod=0x7f07001d;
+        public static final int timePeriod=0x7f07001f;
         public static final int wrap_content=0x7f07000d;
     }
     public static final class integer {
@@ -467,15 +467,16 @@ containing a value of this type.
     public static final class layout {
         public static final int activity_lecture_details=0x7f030000;
         public static final int activity_main=0x7f030001;
-        public static final int fragment_main=0x7f030002;
-        public static final int fragment_navigation_drawer=0x7f030003;
-        public static final int fragment_partners=0x7f030004;
-        public static final int fragment_speaker_details=0x7f030005;
-        public static final int fragment_speakers=0x7f030006;
-        public static final int fragment_venue=0x7f030007;
-        public static final int row_lecture=0x7f030008;
-        public static final int row_partner=0x7f030009;
-        public static final int row_speaker=0x7f03000a;
+        public static final int activity_speaker_details=0x7f030002;
+        public static final int fragment_main=0x7f030003;
+        public static final int fragment_navigation_drawer=0x7f030004;
+        public static final int fragment_partners=0x7f030005;
+        public static final int fragment_speaker_details=0x7f030006;
+        public static final int fragment_speakers=0x7f030007;
+        public static final int fragment_venue=0x7f030008;
+        public static final int row_lecture=0x7f030009;
+        public static final int row_partner=0x7f03000a;
+        public static final int row_speaker=0x7f03000b;
     }
     public static final class menu {
         public static final int global=0x7f0a0000;
@@ -575,7 +576,6 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f060018;
         public static final int first_day=0x7f06001b;
-        public static final int lecture_details=0x7f06001c;
         public static final int navigation_drawer_close=0x7f060022;
         public static final int navigation_drawer_open=0x7f060021;
         public static final int partners=0x7f060020;
@@ -583,6 +583,8 @@ containing a value of this type.
         public static final int public_transport_lines=0x7f060026;
         public static final int speaker_details=0x7f06001e;
         public static final int speakers=0x7f06001d;
+        public static final int title_activity_lecture_details=0x7f06001c;
+        public static final int title_activity_speaker_details=0x7f060027;
         public static final int venue=0x7f06001f;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 

@@ -39,6 +39,6 @@ public class LectureDetailsActivity extends Activity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		getActionBar().setTitle(R.string.lecture_details);
+		getActionBar().setTitle(R.string.title_activity_lecture_details);
 	}
 }

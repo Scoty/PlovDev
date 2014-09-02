@@ -8,17 +8,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.proxiad.plovdev.MainActivity" >
 
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.MapFragment"
+    <FrameLayout
+        android:id="@+id/map_container"
         android:layout_width="match_parent"
-        android:layout_height="400dp" />
+        android:layout_height="400dp" >
+    </FrameLayout>
 
     <TextView
         android:id="@+id/public_transport_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/map"
+        android:layout_below="@+id/map_container"
         android:layout_centerHorizontal="true"
         android:text="@string/public_transport_label"
         android:textAppearance="?android:attr/textAppearanceLarge"

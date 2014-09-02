@@ -1,6 +1,6 @@
 package com.proxiad.plovdev;
 
-import android.app.ListFragment;
+import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 
 import com.proxiad.plovdev.adapters.PartnerAdapter;
@@ -14,11 +14,11 @@ public class PartnersFragment extends ListFragment {
 		PartnerAdapter adapter = new PartnerAdapter(getActivity(), DataParser.getPartners());
 		setListAdapter(adapter);
 	}
-	
+
 	@Override
 	public void onResume() {
-	    super.onResume();
-	    getActivity().getActionBar().setTitle(R.string.partners);
-	    ((MainActivity) getActivity()).getNavigationDrawerFragment().setCurrentPosition(3);
+		super.onResume();
+		getActivity().getActionBar().setTitle(R.string.partners);
+		((MainActivity) getActivity()).getNavigationDrawerFragment().setCurrentPosition(3);
 	}
 }

@@ -34,7 +34,15 @@
         </activity>
         <activity
             android:name=".LectureDetailsActivity"
-            android:label="@string/lecture_details"
+            android:label="@string/title_activity_lecture_details"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".SpeakerDetailsActivity"
+            android:label="@string/title_activity_speaker_details"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
