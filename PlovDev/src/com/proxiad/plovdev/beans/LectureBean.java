@@ -1,8 +1,11 @@
 package com.proxiad.plovdev.beans;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class LectureBean {
+public class LectureBean implements Serializable {
+	
+	private static final long serialVersionUID = 4772024428525844855L;
 	private Timestamp beginHour;
 	private Timestamp endHour;
 	private String name;

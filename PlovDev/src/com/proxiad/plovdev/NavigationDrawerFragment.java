@@ -64,6 +64,7 @@ public class NavigationDrawerFragment extends Fragment {
 
 	public void setCurrentPosition(int position) {
 		mCurrentSelectedPosition = position;
+		mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 	}
 
 	@Override
@@ -111,6 +112,12 @@ public class NavigationDrawerFragment extends Fragment {
 
 	public boolean isDrawerOpen() {
 		return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
+	}
+
+	public void closeDrawer() {
+		if (mDrawerLayout != null) {
+			mDrawerLayout.closeDrawer(mFragmentContainerView);
+		}
 	}
 
 	/**

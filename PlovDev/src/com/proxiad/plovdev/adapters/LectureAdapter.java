@@ -17,6 +17,7 @@ import com.proxiad.plovdev.LectureDetailsActivity;
 import com.proxiad.plovdev.R;
 import com.proxiad.plovdev.beans.LectureBean;
 
+@SuppressWarnings("unused")
 public class LectureAdapter extends ArrayAdapter<LectureBean> {
 
 	private final Context context;
@@ -58,27 +59,7 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 		timePeriodView.setText(timePeriodName);
 
 		descriptionView.setText(itemsArrayList.get(position).getDescription());
-
-		OnTextClickedListener listener = new OnTextClickedListener(position);
-		timePeriodView.setOnClickListener(listener);
-		descriptionView.setOnClickListener(listener);
-
 		// 5. return rowView
 		return rowView;
-	}
-
-	private class OnTextClickedListener implements OnClickListener {
-		private int position;
-
-		private OnTextClickedListener(int position) {
-			this.position = position;
-		}
-
-		@Override
-		public void onClick(View view) {
-			Intent intent = new Intent(context, LectureDetailsActivity.class);
-			intent.putExtra("position", position);
-			context.startActivity(intent);
-		}
 	}
 }

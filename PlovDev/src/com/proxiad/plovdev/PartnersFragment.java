@@ -18,7 +18,8 @@ public class PartnersFragment extends ListFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		getActivity().getActionBar().setTitle(R.string.partners);
-		((MainActivity) getActivity()).getNavigationDrawerFragment().setCurrentPosition(3);
+		if (!this.isHidden()) {
+			getActivity().getActionBar().setTitle(R.string.partners);
+		}
 	}
 }

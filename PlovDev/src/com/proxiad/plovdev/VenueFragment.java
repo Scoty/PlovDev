@@ -38,11 +38,14 @@ public class VenueFragment extends Fragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+		if (!this.isHidden()) {
+			getActivity().getActionBar().setTitle(R.string.speakers);
+		}
 		map = mMapFragment.getMap();
-		if (map != null) { // it can be null as play services may not be available
+		if (map != null) {
+			map.addMarker(new MarkerOptions().position(PLOVDEV).title("PlovDev Location").snippet("бул. ћарица, на около 200м от панаирни€ мост"))
+					.showInfoWindow();
 			if (cameraPosition == null) {
-				map.addMarker(new MarkerOptions().position(PLOVDEV).title("PlovDev Location").snippet("бул. ћарица, на около 200м от панаирни€ мост"))
-						.showInfoWindow();
 				map.animateCamera(CameraUpdateFactory.newLatLngZoom(PLOVDEV, 15));
 			} else {
 				map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
@@ -58,7 +61,7 @@ public class VenueFragment extends Fragment {
 	}
 
 	@Override
-	public void onSaveInstanceState(final Bundle outState) {
+	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putParcelable("cameraPosition", cameraPosition);
 	}

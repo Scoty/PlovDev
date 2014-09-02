@@ -1,9 +1,11 @@
 package com.proxiad.plovdev.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class SpeakerBean {
+public class SpeakerBean implements Serializable{
 
+	private static final long serialVersionUID = -3559477671554703845L;
 	private int portraitId;
 	private String name;
 	private String bio;

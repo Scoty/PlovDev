@@ -1,5 +1,7 @@
 package com.proxiad.plovdev;
 
+import java.util.List;
+import java.util.ArrayList;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -9,8 +11,10 @@ import com.proxiad.plovdev.beans.LectureBean;
 import com.proxiad.plovdev.utils.DataParser;
 
 public class LectureDetailsActivity extends Activity {
+
 	private int position;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -19,7 +23,14 @@ public class LectureDetailsActivity extends Activity {
 		} else {
 			this.position = getIntent().getIntExtra("position", 0);
 		}
-		LectureBean lecture = DataParser.getLecture(position);
+		List<LectureBean> lectureList = (ArrayList<LectureBean>) getIntent().getSerializableExtra("lectureList");
+		LectureBean lecture;
+		if (lectureList != null) {
+			lecture = lectureList.get(position);
+		} else {
+			lecture = DataParser.getLecture(position);
+		}
+
 		setContentView(R.layout.activity_lecture_details);
 
 		ImageView speakerImageView = (ImageView) findViewById(R.id.imageSpeakerPortrait);

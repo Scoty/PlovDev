@@ -1,18 +1,29 @@
 package com.proxiad.plovdev;
 
+import java.util.List;
+
 import android.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends FragmentActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-	@SuppressWarnings("unused")
-	private Bundle savedInstanceState;
+	private final String mainFragmentTag = "mainFragment";
+	private final String speakersFragmentTag = "speakersFragment";
+	private final String venueFragmentTag = "venueFragment";
+	private final String partnersFragmentTag = "partnersFragment";
+
+	private Fragment mainFragment;
+	private Fragment speakersFragment;
+	private Fragment venueFragment;
+	private Fragment partnersFragment;
+
+	private int position;
 
 	/**
 	 * Fragment managing the behaviors, interactions and presentation of the
@@ -20,10 +31,6 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 	 */
 	private NavigationDrawerFragment mNavigationDrawerFragment;
 
-	/**
-	 * Used to store the last screen title. For use in
-	 * {@link #restoreActionBar()}.
-	 */
 	private CharSequence mTitle;
 
 	public NavigationDrawerFragment getNavigationDrawerFragment() {
@@ -34,76 +41,90 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		this.savedInstanceState = savedInstanceState;
-
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-		mTitle = getTitle();
-
+		// mTitle = getTitle();
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		getActionBar().setTitle(R.string.first_day);
+	}
+
+	public void onRetoreInstanceState(Bundle savedInstanceState) {
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		mainFragment = fragmentManager.getFragment(savedInstanceState, mainFragmentTag);
+		speakersFragment = fragmentManager.getFragment(savedInstanceState, speakersFragmentTag);
+		venueFragment = fragmentManager.getFragment(savedInstanceState, venueFragmentTag);
+		partnersFragment = fragmentManager.getFragment(savedInstanceState, partnersFragmentTag);
+		position = savedInstanceState.getInt("position");
+		onNavigationDrawerItemSelected(position);
+	}
+
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putInt("position", position);
+
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		if (mainFragment != null) {
+			fragmentManager.putFragment(outState, mainFragmentTag, mainFragment);
+		}
+		if (speakersFragment != null) {
+			fragmentManager.putFragment(outState, speakersFragmentTag, speakersFragment);
+		}
+		if (venueFragment != null) {
+			fragmentManager.putFragment(outState, venueFragmentTag, venueFragment);
+		}
+		if (partnersFragment != null) {
+			fragmentManager.putFragment(outState, partnersFragmentTag, partnersFragment);
+		}
 	}
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
 		// update the main content by replacing fragments
 		FragmentManager fragmentManager = getSupportFragmentManager();
+		hideAllFragments(fragmentManager);
+		this.position = position;
 		switch (position) {
 		case 0:
 			mTitle = getString(R.string.first_day);
-			String mainFragmentTag = "mainFragment";
-			Fragment mainFragment = fragmentManager.findFragmentByTag(mainFragmentTag);
+			mainFragment = fragmentManager.findFragmentByTag(mainFragmentTag);
 			if (mainFragment == null) {
 				mainFragment = new MainFragment();
+				fragmentManager.beginTransaction().add(R.id.container, mainFragment, mainFragmentTag).commit();
 			}
-			if (!mainFragment.isAdded()) {
-				fragmentManager.beginTransaction().replace(R.id.container, mainFragment, mainFragmentTag).commit();
-			}
+			fragmentManager.beginTransaction().show(mainFragment).commit();
 			break;
 		case 1:
 			mTitle = getString(R.string.speakers);
-			String speakersFragmentTag = "speakersFragment";
-			Fragment speakersFragment = fragmentManager.findFragmentByTag(speakersFragmentTag);
+			speakersFragment = fragmentManager.findFragmentByTag(speakersFragmentTag);
 			if (speakersFragment == null) {
 				speakersFragment = new SpeakersFragment();
-				if (!speakersFragment.isAdded()) {
-					fragmentManager.beginTransaction().replace(R.id.container, speakersFragment, speakersFragmentTag)
-							.addToBackStack(speakersFragmentTag).commit();
-				}
+				fragmentManager.beginTransaction().add(R.id.container, speakersFragment, speakersFragmentTag).commit();
 			}
-			if (!speakersFragment.isAdded()) {
-				fragmentManager.beginTransaction().replace(R.id.container, speakersFragment, speakersFragmentTag).commit();
-			}
+			fragmentManager.beginTransaction().show(speakersFragment).commit();
 			break;
 		case 2:
 			mTitle = getString(R.string.venue);
-			String venueFragmentTag = "venueFragment";
-			Fragment venueFragment = fragmentManager.findFragmentByTag(venueFragmentTag);
+			venueFragment = fragmentManager.findFragmentByTag(venueFragmentTag);
 			if (venueFragment == null) {
 				venueFragment = new VenueFragment();
-				if (!venueFragment.isAdded()) {
-					fragmentManager.beginTransaction().replace(R.id.container, venueFragment, venueFragmentTag).addToBackStack(venueFragmentTag)
-							.commit();
-				}
+				fragmentManager.beginTransaction().add(R.id.container, venueFragment, venueFragmentTag).commit();
 			}
-			if (!venueFragment.isAdded()) {
-				fragmentManager.beginTransaction().replace(R.id.container, venueFragment, venueFragmentTag).commit();
-			}
+			fragmentManager.beginTransaction().show(venueFragment).commit();
 			break;
 		case 3:
 			mTitle = getString(R.string.partners);
-			String partnersFragmentTag = "partnersFragment";
-			Fragment partnersFragment = fragmentManager.findFragmentByTag(partnersFragmentTag);
+			partnersFragment = fragmentManager.findFragmentByTag(partnersFragmentTag);
 			if (partnersFragment == null) {
 				partnersFragment = new PartnersFragment();
-				if (!partnersFragment.isAdded()) {
-					fragmentManager.beginTransaction().replace(R.id.container, partnersFragment, partnersFragmentTag)
-							.addToBackStack(partnersFragmentTag).commit();
-				}
+				fragmentManager.beginTransaction().add(R.id.container, partnersFragment, partnersFragmentTag).commit();
 			}
-			if (!partnersFragment.isAdded()) {
-				fragmentManager.beginTransaction().replace(R.id.container, partnersFragment, partnersFragmentTag).commit();
-			}
+			fragmentManager.beginTransaction().show(partnersFragment).commit();
 		}
 	}
 
@@ -137,5 +158,43 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onBackPressed() {
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		if (mNavigationDrawerFragment.isDrawerOpen()) {
+			mNavigationDrawerFragment.closeDrawer();
+			return;
+		}
+		if (mainFragment == null) {
+			this.position = 0;
+			mainFragment = fragmentManager.findFragmentByTag(mainFragmentTag);
+			if (mainFragment == null) {
+				mainFragment = new MainFragment();
+				fragmentManager.beginTransaction().add(R.id.container, mainFragment, mainFragmentTag).commit();
+			}
+			hideAllFragments(fragmentManager);
+			fragmentManager.beginTransaction().show(mainFragment).commit();
+			mNavigationDrawerFragment.setCurrentPosition(0);
+			getActionBar().setTitle(R.string.first_day);
+		} else if (mainFragment.isHidden()) {
+			this.position = 0;
+			hideAllFragments(fragmentManager);
+			fragmentManager.beginTransaction().show(mainFragment).commit();
+			mNavigationDrawerFragment.setCurrentPosition(0);
+			getActionBar().setTitle(R.string.first_day);
+		} else {
+			super.onBackPressed();
+		}
+	}
+
+	private void hideAllFragments(FragmentManager fragmentManager) {
+		List<Fragment> fragments = fragmentManager.getFragments();
+		for (Fragment fragment : fragments) {
+			if (fragment.getId() != R.id.navigation_drawer) {
+				fragmentManager.beginTransaction().hide(fragment).commit();
+			}
+		}
 	}
 }
