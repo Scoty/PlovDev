@@ -43,7 +43,9 @@ public class VenueFragment extends Fragment {
 		}
 		map = mMapFragment.getMap();
 		if (map != null) {
-			map.addMarker(new MarkerOptions().position(PLOVDEV).title("PlovDev Location").snippet("бул. ћарица, на около 200м от панаирни€ мост"))
+			String titleLocation = getString(R.string.title_location);
+			String snippet = getString(R.string.snippet);
+			map.addMarker(new MarkerOptions().position(PLOVDEV).title(titleLocation).snippet(snippet))
 					.showInfoWindow();
 			if (cameraPosition == null) {
 				map.animateCamera(CameraUpdateFactory.newLatLngZoom(PLOVDEV, 15));

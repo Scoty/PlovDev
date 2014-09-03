@@ -12,8 +12,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_settings">Settings</string>
-    <string name="public_transport_label">Public Transport Lines:</string>
-    <string name="public_transport_lines">1, 10, 111</string>
+    <string name="public_transport_label">Public Transport Lines</string>
+    <string name="public_transport_lines">You can reach the venue using one of the following bus lines: 1, 10, 111. Please make sure that you check the schedule of the public transport.</string>
     <string name="title_activity_speaker_details">Speaker</string>
-
+    <string name="title_thanks">Special Thanks</string>
+    <string name="thanks">We want to say big thanks to our sponsors! Whitout them this event would be just a dream in our eyes. You can tap the images below to go to their webpages and show them some love!</string>
+	<string name="title_location">PlovDev Conference</string>
+	<string name="snippet">Kirov Palace(Maritza Str. near Panair bridge)</string>
+    
 </resources>

@@ -2,13 +2,8 @@ package com.proxiad.plovdev.adapters;
 
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Shader.TileMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +28,7 @@ public class SpeakerAdapter extends ArrayAdapter<SpeakerBean> {
 		this.itemsArrayList = itemsArrayList;
 	}
 
-	@Override
+	@SuppressLint("ViewHolder") @Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 
 		// 1. Create inflater

@@ -128,7 +128,7 @@ public class DataParser {
 	public static SpeakerBean getSpeaker(int location) {
 		return speakers.get(location);
 	}
-	
+
 	public static Bitmap getRoundedImage(int position, Context context, List<SpeakerBean> itemsArrayList) {
 		Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), itemsArrayList.get(position).getPortraitId());
 		Bitmap circleBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
@@ -142,7 +142,7 @@ public class DataParser {
 
 		return circleBitmap;
 	}
-	
+
 	public static Bitmap getRoundedImage(Context context, int imageId) {
 		Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), imageId);
 		Bitmap circleBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
@@ -155,5 +155,5 @@ public class DataParser {
 		c.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2, bitmap.getWidth() / 2, paint);
 
 		return circleBitmap;
-	} 
+	}
 }

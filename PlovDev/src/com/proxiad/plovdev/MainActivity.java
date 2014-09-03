@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 public class MainActivity extends FragmentActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
@@ -45,6 +47,8 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 		// mTitle = getTitle();
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+		ImageView logoImageView = (ImageView) findViewById(R.id.imageLogoPlovdev);
+		logoImageView.setImageResource(R.drawable.logo_plovdev);
 	}
 
 	@Override
@@ -186,6 +190,28 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 			getActionBar().setTitle(R.string.first_day);
 		} else {
 			super.onBackPressed();
+		}
+	}
+
+	public void onLogoClicked(View view) {
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		if (mainFragment == null) {
+			this.position = 0;
+			mainFragment = fragmentManager.findFragmentByTag(mainFragmentTag);
+			if (mainFragment == null) {
+				mainFragment = new MainFragment();
+				fragmentManager.beginTransaction().add(R.id.container, mainFragment, mainFragmentTag).commit();
+			}
+			hideAllFragments(fragmentManager);
+			fragmentManager.beginTransaction().show(mainFragment).commit();
+			mNavigationDrawerFragment.setCurrentPosition(0);
+			getActionBar().setTitle(R.string.first_day);
+		} else {
+			this.position = 0;
+			hideAllFragments(fragmentManager);
+			fragmentManager.beginTransaction().show(mainFragment).commit();
+			mNavigationDrawerFragment.setCurrentPosition(0);
+			getActionBar().setTitle(R.string.first_day);
 		}
 	}
 
