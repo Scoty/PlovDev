@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.proxiad.plovdev"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
-    <ImageView
+    <com.proxiad.plovdev.utils.CircularImageView
         android:id="@+id/imageSpeakerPortrait"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop" />
+        app:border="true"
+        app:shadow="true" />
 
     <TextView
         android:id="@+id/timePeriod"

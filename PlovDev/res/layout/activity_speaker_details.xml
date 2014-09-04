@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.proxiad.plovdev"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,14 +8,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.proxiad.plovdev.MainActivity" >
-    
-    <ImageView
+
+    <com.proxiad.plovdev.utils.CircularImageView
         android:id="@+id/imageSpeakerPortrait"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-         />
+        app:border="true"
+        app:shadow="true" />
 
     <TextView
         android:id="@+id/nameSpeaker"
@@ -32,7 +33,7 @@
         android:layout_below="@+id/nameSpeaker"
         android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-    
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"

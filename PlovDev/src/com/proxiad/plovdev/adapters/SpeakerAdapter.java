@@ -28,7 +28,8 @@ public class SpeakerAdapter extends ArrayAdapter<SpeakerBean> {
 		this.itemsArrayList = itemsArrayList;
 	}
 
-	@SuppressLint("ViewHolder") @Override
+	@SuppressLint("ViewHolder")
+	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 
 		// 1. Create inflater
@@ -43,14 +44,12 @@ public class SpeakerAdapter extends ArrayAdapter<SpeakerBean> {
 		TextView bioSpeakerView = (TextView) rowView.findViewById(R.id.bioSpeaker);
 
 		// 4. Set the image and the click listener for textView
-
-		speakerImageView.setImageBitmap(DataParser.getRoundedImage(position, context, itemsArrayList));
+		speakerImageView.setImageResource(itemsArrayList.get(position).getPortraitId());
 		nameSpeakerView.setText(itemsArrayList.get(position).getName());
 		bioSpeakerView.setText(itemsArrayList.get(position).getBio());
 
 		// 5. return rowView
 		return rowView;
 	}
-
 
 }

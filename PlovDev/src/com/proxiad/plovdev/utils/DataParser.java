@@ -4,14 +4,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Shader.TileMode;
-
 import com.proxiad.plovdev.R;
 import com.proxiad.plovdev.beans.LectureBean;
 import com.proxiad.plovdev.beans.PartnerBean;
@@ -127,33 +119,5 @@ public class DataParser {
 
 	public static SpeakerBean getSpeaker(int location) {
 		return speakers.get(location);
-	}
-
-	public static Bitmap getRoundedImage(int position, Context context, List<SpeakerBean> itemsArrayList) {
-		Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), itemsArrayList.get(position).getPortraitId());
-		Bitmap circleBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-
-		BitmapShader shader = new BitmapShader(bitmap, TileMode.CLAMP, TileMode.CLAMP);
-		Paint paint = new Paint();
-		paint.setShader(shader);
-
-		Canvas c = new Canvas(circleBitmap);
-		c.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2, bitmap.getWidth() / 2, paint);
-
-		return circleBitmap;
-	}
-
-	public static Bitmap getRoundedImage(Context context, int imageId) {
-		Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), imageId);
-		Bitmap circleBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-
-		BitmapShader shader = new BitmapShader(bitmap, TileMode.CLAMP, TileMode.CLAMP);
-		Paint paint = new Paint();
-		paint.setShader(shader);
-
-		Canvas c = new Canvas(circleBitmap);
-		c.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2, bitmap.getWidth() / 2, paint);
-
-		return circleBitmap;
 	}
 }

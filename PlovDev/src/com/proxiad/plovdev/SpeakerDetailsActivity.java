@@ -29,7 +29,7 @@ public class SpeakerDetailsActivity extends ListActivity {
 		}
 		speaker = DataParser.getSpeaker(position);
 		setContentView(R.layout.activity_speaker_details);
-		
+
 		LectureAdapter adapter = new LectureAdapter(this, speaker.getLectures());
 		setListAdapter(adapter);
 
@@ -37,7 +37,7 @@ public class SpeakerDetailsActivity extends ListActivity {
 		TextView nameSpeakerView = (TextView) findViewById(R.id.nameSpeaker);
 		TextView bioSpeakerView = (TextView) findViewById(R.id.bioSpeaker);
 
-		speakerImageView.setImageBitmap(DataParser.getRoundedImage(this, speaker.getPortraitId()));
+		speakerImageView.setImageResource(speaker.getPortraitId());
 		nameSpeakerView.setText(speaker.getName());
 		bioSpeakerView.setText(speaker.getBio());
 	}
@@ -52,13 +52,13 @@ public class SpeakerDetailsActivity extends ListActivity {
 		super.onResume();
 		getActionBar().setTitle(R.string.title_activity_speaker_details);
 	}
-	
+
 	@Override
-	public void onListItemClick(ListView l, View v, int pos, long id) {  
-	    super.onListItemClick(l, v, pos, id);
-	    Intent intent = new Intent(this, LectureDetailsActivity.class);
+	public void onListItemClick(ListView l, View v, int pos, long id) {
+		super.onListItemClick(l, v, pos, id);
+		Intent intent = new Intent(this, LectureDetailsActivity.class);
 		intent.putExtra("position", pos);
 		intent.putExtra("lectureList", (ArrayList<LectureBean>) speaker.getLectures());
 		startActivity(intent);
-	}  
+	}
 }

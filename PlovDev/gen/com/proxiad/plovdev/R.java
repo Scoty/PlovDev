@@ -44,6 +44,36 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int adUnitId=0x7f010002;
+        /**  Specifies whether or not to draw a circular border around the image. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int border=0x7f010020;
+        /**  Specifies the color of the border draw around the image. (if enabled) 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int border_color=0x7f010021;
+        /**  Makes the border this pixels wide. (if enabled) 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int border_width=0x7f010022;
         /**  Appearance of the buy button. Must be one of "classic", "grayscale" and "monochrome" 
          <p>Must be one of the following constant values.</p>
 <table>
@@ -154,6 +184,10 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int cameraZoom=0x7f010008;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int circularImageViewStyle=0x7f010028;
         /**  Google Wallet environment to use 
          <p>Must be one of the following constant values.</p>
 <table>
@@ -249,6 +283,55 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int maskedWalletDetailsTextAppearance=0x7f010019;
+        /**  Specifies whether or not to draw a selector on this view upon touch events. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int selector=0x7f010023;
+        /**  Specifies the color of the selector draw on top of the image upon touch events. (if enabled) 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int selector_color=0x7f010024;
+        /**  Specifies the color of the selector stroke drawn around the image upon touch events. Be sure to provide some opacity. (if enabled) 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int selector_stroke_color=0x7f010025;
+        /**  Makes the selector stroke drawn around the image upon touch events this pixels wide. (if enabled) 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int selector_stroke_width=0x7f010026;
+        /**  Specifies whether or not to draw a shadow around your circular image. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int shadow=0x7f010027;
         /**  Theme to be used for the Wallet selector 
          <p>Must be one of the following constant values.</p>
 <table>
@@ -650,7 +733,7 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f04000f;
+        public static final int AppBaseTheme=0x7f040010;
         public static final int DropDownListView_Plovdevactionbar=0x7f040009;
         public static final int DropDownNav_Plovdevactionbar=0x7f04000b;
         public static final int PopupMenu_Plovdevactionbar=0x7f040008;
@@ -662,6 +745,7 @@ containing a value of this type.
         /**  this style is only referenced in a Light.DarkActionBar based theme 
          */
         public static final int Theme_Plovdevactionbar_Widget=0x7f04000e;
+        public static final int Trick=0x7f04000f;
         public static final int WalletFragmentDefaultButtonTextAppearance=0x7f040003;
         public static final int WalletFragmentDefaultDetailsHeaderTextAppearance=0x7f040002;
         public static final int WalletFragmentDefaultDetailsTextAppearance=0x7f040001;
@@ -748,6 +832,192 @@ containing a value of this type.
           @attr name com.proxiad.plovdev:adUnitId
         */
         public static final int AdsAttrs_adUnitId = 2;
+        /**  CircularImageView for custom shape 
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CircularImageView_border com.proxiad.plovdev:border}</code></td><td> Specifies whether or not to draw a circular border around the image.</td></tr>
+           <tr><td><code>{@link #CircularImageView_border_color com.proxiad.plovdev:border_color}</code></td><td> Specifies the color of the border draw around the image.</td></tr>
+           <tr><td><code>{@link #CircularImageView_border_width com.proxiad.plovdev:border_width}</code></td><td> Makes the border this pixels wide.</td></tr>
+           <tr><td><code>{@link #CircularImageView_selector com.proxiad.plovdev:selector}</code></td><td> Specifies whether or not to draw a selector on this view upon touch events.</td></tr>
+           <tr><td><code>{@link #CircularImageView_selector_color com.proxiad.plovdev:selector_color}</code></td><td> Specifies the color of the selector draw on top of the image upon touch events.</td></tr>
+           <tr><td><code>{@link #CircularImageView_selector_stroke_color com.proxiad.plovdev:selector_stroke_color}</code></td><td> Specifies the color of the selector stroke drawn around the image upon touch events.</td></tr>
+           <tr><td><code>{@link #CircularImageView_selector_stroke_width com.proxiad.plovdev:selector_stroke_width}</code></td><td> Makes the selector stroke drawn around the image upon touch events this pixels wide.</td></tr>
+           <tr><td><code>{@link #CircularImageView_shadow com.proxiad.plovdev:shadow}</code></td><td> Specifies whether or not to draw a shadow around your circular image.</td></tr>
+           </table>
+           @see #CircularImageView_border
+           @see #CircularImageView_border_color
+           @see #CircularImageView_border_width
+           @see #CircularImageView_selector
+           @see #CircularImageView_selector_color
+           @see #CircularImageView_selector_stroke_color
+           @see #CircularImageView_selector_stroke_width
+           @see #CircularImageView_shadow
+         */
+        public static final int[] CircularImageView = {
+            0x7f010020, 0x7f010021, 0x7f010022, 0x7f010023,
+            0x7f010024, 0x7f010025, 0x7f010026, 0x7f010027
+        };
+        /**
+          <p>
+          @attr description
+           Specifies whether or not to draw a circular border around the image. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.proxiad.plovdev:border
+        */
+        public static final int CircularImageView_border = 0;
+        /**
+          <p>
+          @attr description
+           Specifies the color of the border draw around the image. (if enabled) 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.proxiad.plovdev:border_color
+        */
+        public static final int CircularImageView_border_color = 1;
+        /**
+          <p>
+          @attr description
+           Makes the border this pixels wide. (if enabled) 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.proxiad.plovdev:border_width
+        */
+        public static final int CircularImageView_border_width = 2;
+        /**
+          <p>
+          @attr description
+           Specifies whether or not to draw a selector on this view upon touch events. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.proxiad.plovdev:selector
+        */
+        public static final int CircularImageView_selector = 3;
+        /**
+          <p>
+          @attr description
+           Specifies the color of the selector draw on top of the image upon touch events. (if enabled) 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.proxiad.plovdev:selector_color
+        */
+        public static final int CircularImageView_selector_color = 4;
+        /**
+          <p>
+          @attr description
+           Specifies the color of the selector stroke drawn around the image upon touch events. Be sure to provide some opacity. (if enabled) 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.proxiad.plovdev:selector_stroke_color
+        */
+        public static final int CircularImageView_selector_stroke_color = 5;
+        /**
+          <p>
+          @attr description
+           Makes the selector stroke drawn around the image upon touch events this pixels wide. (if enabled) 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.proxiad.plovdev:selector_stroke_width
+        */
+        public static final int CircularImageView_selector_stroke_width = 6;
+        /**
+          <p>
+          @attr description
+           Specifies whether or not to draw a shadow around your circular image. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.proxiad.plovdev:shadow
+        */
+        public static final int CircularImageView_shadow = 7;
+        /** Attributes that can be used with a CustomCircularImageViewTheme.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CustomCircularImageViewTheme_circularImageViewStyle com.proxiad.plovdev:circularImageViewStyle}</code></td><td></td></tr>
+           </table>
+           @see #CustomCircularImageViewTheme_circularImageViewStyle
+         */
+        public static final int[] CustomCircularImageViewTheme = {
+            0x7f010028
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.proxiad.plovdev.R.attr#circularImageViewStyle}
+          attribute's value can be found in the {@link #CustomCircularImageViewTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.proxiad.plovdev:circularImageViewStyle
+        */
+        public static final int CustomCircularImageViewTheme_circularImageViewStyle = 0;
         /** Attributes that can be used with a MapAttrs.
            <p>Includes the following attributes:</p>
            <table>

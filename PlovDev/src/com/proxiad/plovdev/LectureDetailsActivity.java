@@ -37,7 +37,7 @@ public class LectureDetailsActivity extends Activity {
 		TextView nameLectureView = (TextView) findViewById(R.id.nameLecture);
 		TextView descLectureView = (TextView) findViewById(R.id.descLecture);
 
-		speakerImageView.setImageBitmap(DataParser.getRoundedImage(this, lecture.getSpeaker().getPortraitId()));
+		speakerImageView.setImageResource(lecture.getSpeaker().getPortraitId());
 		nameLectureView.setText(lecture.getName());
 		descLectureView.setText(lecture.getDescription());
 	}

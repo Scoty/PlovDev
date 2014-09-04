@@ -1,6 +1,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
+
     <!-- Application theme. -->
-     <style name="Theme.Plovdevactionbar" parent="@android:style/android:Theme.Holo.Light.DarkActionBar">
+    <style name="Theme.Plovdevactionbar" parent="@android:style/android:Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarItemBackground">@drawable/selectable_background_plovdevactionbar</item>
         <item name="android:popupMenuStyle">@style/PopupMenu.Plovdevactionbar</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Plovdevactionbar</item>
@@ -10,6 +11,7 @@
         <item name="android:actionModeBackground">@drawable/cab_background_top_plovdevactionbar</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_plovdevactionbar</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Plovdevactionbar</item>
+        <item name="android:actionBarWidgetTheme">@style/Trick</item>
     </style>
 
     <style name="ActionBar.Solid.Plovdevactionbar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
@@ -24,10 +26,8 @@
         <item name="android:progressBarStyle">@style/ProgressBar.Plovdevactionbar</item>
     </style>
 
-    
-    
     <style name="PopupMenu.Plovdevactionbar" parent="@android:style/Widget.Holo.Light.ListPopupWindow">
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_plovdevactionbar</item>	
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_plovdevactionbar</item>
     </style>
 
     <style name="DropDownListView.Plovdevactionbar" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
@@ -43,11 +43,11 @@
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_plovdevactionbar</item>
         <item name="android:dropDownSelector">@drawable/selectable_background_plovdevactionbar</item>
     </style>
-    
+
     <style name="ProgressBar.Plovdevactionbar" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/progress_horizontal_plovdevactionbar</item>
     </style>
-    
+
     <style name="ActionButton.CloseMode.Plovdevactionbar" parent="@android:style/Widget.Holo.Light.ActionButton.CloseMode">
         <item name="android:background">@drawable/btn_cab_done_plovdevactionbar</item>
     </style>
@@ -56,6 +56,10 @@
     <style name="Theme.Plovdevactionbar.Widget" parent="@android:style/Theme.Holo">
         <item name="android:popupMenuStyle">@style/PopupMenu.Plovdevactionbar</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Plovdevactionbar</item>
+    </style>
+
+    <style name="Trick" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/PopupMenu.Plovdevactionbar</item>
     </style>
 
 </resources>
