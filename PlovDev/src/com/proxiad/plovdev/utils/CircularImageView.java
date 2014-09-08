@@ -182,8 +182,8 @@ public class CircularImageView extends ImageView {
 	 *            Set to true to render a shadow or false to disable it.
 	 */
 	public void setShadow(boolean shadowEnabled) {
-		this.shadowEnabled = true;
-		if (shadowEnabled) {
+		this.shadowEnabled = shadowEnabled;
+		if (this.shadowEnabled) {
 			// paint.setShadowLayer(4.0f, 0.0f, 2.0f, Color.BLACK);
 			paintBorder.setShadowLayer(4.0f, 0.0f, 2.0f, Color.BLACK);
 			paintSelectorBorder.setShadowLayer(4.0f, 0.0f, 2.0f, Color.BLACK);

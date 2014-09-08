@@ -25,34 +25,41 @@ public class VenueFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		View view = inflater.inflate(R.layout.fragment_venue, container, false);
-		mMapFragment = SupportMapFragment.newInstance();
-		mMapFragment.setRetainInstance(true);
-		FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-		transaction.add(R.id.map_container, mMapFragment).commit();
-		if (savedInstanceState != null) {
+		if (savedInstanceState == null) {
+			mMapFragment = SupportMapFragment.newInstance();
+			mMapFragment.setRetainInstance(true);
+			FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+			transaction.add(R.id.map_container, mMapFragment).commit();
+		} else {
+			mMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_container);
+			FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+			transaction.show(mMapFragment).commit();
 			this.cameraPosition = savedInstanceState.getParcelable("cameraPosition");
 		}
 		return view;
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
-		if (!this.isHidden()) {
-			getActivity().getActionBar().setTitle(R.string.speakers);
-		}
+	public void onStart() {
+		super.onStart();
 		map = mMapFragment.getMap();
 		if (map != null) {
 			String titleLocation = getString(R.string.title_location);
 			String snippet = getString(R.string.snippet);
-			map.addMarker(new MarkerOptions().position(PLOVDEV).title(titleLocation).snippet(snippet))
-					.showInfoWindow();
+			map.addMarker(new MarkerOptions().position(PLOVDEV).title(titleLocation).snippet(snippet)).showInfoWindow();
 			if (cameraPosition == null) {
 				map.animateCamera(CameraUpdateFactory.newLatLngZoom(PLOVDEV, 15));
 			} else {
 				map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 			}
+		}
+	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		if (!this.isHidden()) {
+			getActivity().getActionBar().setTitle(R.string.venue);
 		}
 	}
 

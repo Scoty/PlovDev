@@ -17,7 +17,8 @@
     <string name="title_activity_speaker_details">Speaker</string>
     <string name="title_thanks">Special Thanks</string>
     <string name="thanks">We want to say big thanks to our sponsors! Whitout them this event would be just a dream in our eyes. You can tap the images below to go to their webpages and show them some love!</string>
-	<string name="title_location">PlovDev Conference</string>
-	<string name="snippet">Kirov Palace(Maritza Str. near Panair bridge)</string>
-    
+    <string name="title_location">PlovDev Conference</string>
+    <string name="snippet">Kirov Palace(Maritza Str. near Panair bridge)</string>
+    <string name="lecture_list">Lectures List:</string>
+
 </resources>

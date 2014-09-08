@@ -15,42 +15,44 @@ import com.proxiad.plovdev.R;
 import com.proxiad.plovdev.beans.PartnerBean;
 
 public class PartnerAdapter extends ArrayAdapter<PartnerBean> {
-	
+
 	private final Context context;
-    private final List<PartnerBean> itemsArrayList;
+	private final List<PartnerBean> itemsArrayList;
 
-    public PartnerAdapter(Context context, List<PartnerBean> itemsArrayList) {
+	public PartnerAdapter(Context context, List<PartnerBean> itemsArrayList) {
+		super(context, R.layout.row_partner, itemsArrayList);
+		this.context = context;
+		this.itemsArrayList = itemsArrayList;
+	}
 
-        super(context, R.layout.row_partner, itemsArrayList);
+	@Override
+	public View getView(final int position, View convertView, ViewGroup parent) {
+		View rowView = convertView;
+		ViewHolder viewHolder;
+		if (rowView == null) {
+			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			rowView = inflater.inflate(R.layout.row_partner, parent, false);
+			viewHolder = new ViewHolder();
+			viewHolder.partnerImageView = (ImageView) rowView.findViewById(R.id.partnerImageView);
+			rowView.setTag(viewHolder);
+		} else {
+			viewHolder = (ViewHolder) rowView.getTag();
+		}
 
-        this.context = context;
-        this.itemsArrayList = itemsArrayList;
-    }
+		final PartnerBean partner = itemsArrayList.get(position);
+		viewHolder.partnerImageView.setImageResource(partner.getPortraitId());
+		viewHolder.partnerImageView.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(partner.getUrlLink()));
+				context.startActivity(intent);
+			}
+		});
 
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+		return rowView;
+	}
 
-        // 1. Create inflater 
-        LayoutInflater inflater = (LayoutInflater) context
-            .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        // 2. Get rowView from inflater
-        View rowView = inflater.inflate(R.layout.row_partner, parent, false);
-
-        // 3. Get the image view from the rowView
-        ImageView partnerImageView = (ImageView) rowView.findViewById(R.id.partnerImageView);
-   
-        // 4. Set the image and the click listener for textView 
-        partnerImageView.setImageResource(itemsArrayList.get(position).getPortraitId());
-        partnerImageView.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(itemsArrayList.get(position).getUrlLink()));
-                context.startActivity(intent);
-            }
-        });
-        
-        // 5. return rowView
-        return rowView;
-    }
+	static class ViewHolder {
+		ImageView partnerImageView;
+	}
 
 }

@@ -10,11 +10,10 @@
 
     <TextView
         android:id="@+id/public_transport_label"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        android:gravity="center"
         android:text="@string/public_transport_label"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#33B5E5"
@@ -22,14 +21,12 @@
 
     <TextView
         android:id="@+id/public_transport_lines"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/public_transport_label"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
         android:gravity="center"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:text="@string/public_transport_lines"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -37,7 +34,9 @@
         android:id="@+id/map_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/public_transport_lines" >
+        android:layout_below="@+id/public_transport_lines"
+        android:background="@drawable/border_gradient"
+        android:padding="3dp" >
     </FrameLayout>
 
 </RelativeLayout>

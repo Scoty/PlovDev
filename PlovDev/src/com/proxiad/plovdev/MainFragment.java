@@ -21,7 +21,9 @@ public class MainFragment extends ListFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
-		getActivity().getActionBar().setTitle(R.string.first_day);
+		if (!this.isHidden()) {
+			getActivity().getActionBar().setTitle(R.string.first_day);
+		}
 	}
 
 	@Override

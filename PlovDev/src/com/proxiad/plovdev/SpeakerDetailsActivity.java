@@ -2,6 +2,7 @@ package com.proxiad.plovdev;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.proxiad.plovdev.adapters.LectureAdapter;
+import com.proxiad.plovdev.adapters.LectureForSpeakerAdapter;
 import com.proxiad.plovdev.beans.LectureBean;
 import com.proxiad.plovdev.beans.SpeakerBean;
 import com.proxiad.plovdev.utils.DataParser;
@@ -29,17 +30,21 @@ public class SpeakerDetailsActivity extends ListActivity {
 		}
 		speaker = DataParser.getSpeaker(position);
 		setContentView(R.layout.activity_speaker_details);
+		@SuppressLint("InflateParams") 
+		View header = getLayoutInflater().inflate(R.layout.header_lecture_for_speaker, null);
 
-		LectureAdapter adapter = new LectureAdapter(this, speaker.getLectures());
-		setListAdapter(adapter);
-
-		ImageView speakerImageView = (ImageView) findViewById(R.id.imageSpeakerPortrait);
-		TextView nameSpeakerView = (TextView) findViewById(R.id.nameSpeaker);
-		TextView bioSpeakerView = (TextView) findViewById(R.id.bioSpeaker);
+		ImageView speakerImageView = (ImageView) header.findViewById(R.id.imageSpeakerPortrait);
+		TextView nameSpeakerView = (TextView) header.findViewById(R.id.nameSpeaker);
+		TextView bioSpeakerView = (TextView) header.findViewById(R.id.bioSpeaker);
 
 		speakerImageView.setImageResource(speaker.getPortraitId());
 		nameSpeakerView.setText(speaker.getName());
 		bioSpeakerView.setText(speaker.getBio());
+
+		ListView listView = getListView();
+		listView.addHeaderView(header);
+		LectureForSpeakerAdapter adapter = new LectureForSpeakerAdapter(this, speaker.getLectures());
+		setListAdapter(adapter);
 	}
 
 	@Override
@@ -56,9 +61,12 @@ public class SpeakerDetailsActivity extends ListActivity {
 	@Override
 	public void onListItemClick(ListView l, View v, int pos, long id) {
 		super.onListItemClick(l, v, pos, id);
-		Intent intent = new Intent(this, LectureDetailsActivity.class);
-		intent.putExtra("position", pos);
-		intent.putExtra("lectureList", (ArrayList<LectureBean>) speaker.getLectures());
-		startActivity(intent);
+		if (pos != 0) {
+			pos = pos - 1;
+			Intent intent = new Intent(this, LectureDetailsActivity.class);
+			intent.putExtra("position", pos);
+			intent.putExtra("lectureList", (ArrayList<LectureBean>) speaker.getLectures());
+			startActivity(intent);
+		}
 	}
 }

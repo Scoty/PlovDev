@@ -10,11 +10,10 @@
 
     <TextView
         android:id="@+id/thanksTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:text="@string/title_thanks"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#33B5E5"
@@ -22,15 +21,13 @@
 
     <TextView
         android:id="@+id/thanks"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/thanksTitle"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
         android:text="@string/thanks"
+        android:layout_marginBottom="12dp"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <ListView

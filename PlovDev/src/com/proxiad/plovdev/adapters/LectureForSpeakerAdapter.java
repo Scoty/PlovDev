@@ -7,19 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.proxiad.plovdev.R;
 import com.proxiad.plovdev.beans.LectureBean;
 
-public class LectureAdapter extends ArrayAdapter<LectureBean> {
+public class LectureForSpeakerAdapter extends ArrayAdapter<LectureBean> {
 
 	private final Context context;
 	private final List<LectureBean> itemsArrayList;
 
-	public LectureAdapter(Context context, List<LectureBean> itemsArrayList) {
-		super(context, R.layout.row_lecture, itemsArrayList);
+	public LectureForSpeakerAdapter(Context context, List<LectureBean> itemsArrayList) {
+		super(context, R.layout.row_lecture_for_speaker, itemsArrayList);
 		this.context = context;
 		this.itemsArrayList = itemsArrayList;
 	}
@@ -30,9 +29,8 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 		ViewHolder viewHolder;
 		if (rowView == null) {
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			rowView = inflater.inflate(R.layout.row_lecture, parent, false);
+			rowView = inflater.inflate(R.layout.row_lecture_for_speaker, parent, false);
 			viewHolder = new ViewHolder();
-			viewHolder.imageSpeakerPortraitView = (ImageView) rowView.findViewById(R.id.imageSpeakerPortrait);
 			viewHolder.timePeriodView = (TextView) rowView.findViewById(R.id.timePeriod);
 			viewHolder.descriptionView = (TextView) rowView.findViewById(R.id.description);
 			rowView.setTag(viewHolder);
@@ -41,7 +39,6 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 		}
 
 		LectureBean lecture = itemsArrayList.get(position);
-		viewHolder.imageSpeakerPortraitView.setImageResource(lecture.getSpeaker().getPortraitId());
 		viewHolder.timePeriodView.setText(lecture.getTimePeriodName());
 		viewHolder.descriptionView.setText(lecture.getDescription());
 
@@ -49,7 +46,6 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 	}
 
 	static class ViewHolder {
-		ImageView imageSpeakerPortraitView;
 		TextView timePeriodView;
 		TextView descriptionView;
 	}
