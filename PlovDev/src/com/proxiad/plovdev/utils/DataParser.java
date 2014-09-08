@@ -3,6 +3,12 @@ package com.proxiad.plovdev.utils;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
 
 import com.proxiad.plovdev.R;
 import com.proxiad.plovdev.beans.LectureBean;
@@ -120,4 +126,13 @@ public class DataParser {
 	public static SpeakerBean getSpeaker(int location) {
 		return speakers.get(location);
 	}
+	
+	public static void setLocale(String lang, Context context) {
+        Locale locale = new Locale(lang);
+        Resources res = context.getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = locale;
+        res.updateConfiguration(conf, dm);
+    }
 }
