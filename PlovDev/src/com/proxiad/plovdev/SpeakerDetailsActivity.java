@@ -31,7 +31,7 @@ public class SpeakerDetailsActivity extends ListActivity {
 		speaker = DataParser.getSpeaker(position);
 		setContentView(R.layout.activity_speaker_details);
 		@SuppressLint("InflateParams") 
-		View header = getLayoutInflater().inflate(R.layout.header_lecture_for_speaker, null);
+		View header = getLayoutInflater().inflate(R.layout.header_lecture_for_speaker, this.getListView());
 
 		ImageView speakerImageView = (ImageView) header.findViewById(R.id.imageSpeakerPortrait);
 		TextView nameSpeakerView = (TextView) header.findViewById(R.id.nameSpeaker);

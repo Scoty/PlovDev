@@ -1,13 +1,21 @@
 package com.proxiad.plovdev;
 
 import java.util.List;
+import java.util.Locale;
 
 import android.app.ActionBar;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,13 +50,12 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setLocale(this);
 		setContentView(R.layout.activity_main);
-		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-		// mTitle = getTitle();
-		// Set up the drawer.
-		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 		ImageView logoImageView = (ImageView) findViewById(R.id.imageLogoPlovdev);
 		logoImageView.setImageResource(R.drawable.logo_plovdev);
+		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 	}
 
 	@Override
@@ -159,6 +166,8 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
+			Intent intent = new Intent(this, SettingsActivity.class);
+			startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -222,5 +231,16 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 				fragmentManager.beginTransaction().hide(fragment).commit();
 			}
 		}
+	}
+
+	private void setLocale(Context context) {
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+		String lang = sharedPreferences.getString(SettingsActivity.KEY_PREF_LIST_LANGUAGE, "en");
+		Locale locale = new Locale(lang);
+		Resources res = context.getResources();
+		DisplayMetrics dm = res.getDisplayMetrics();
+		Configuration conf = res.getConfiguration();
+		conf.locale = locale;
+		res.updateConfiguration(conf, dm);
 	}
 }
