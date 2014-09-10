@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PlovDev</string>
+    <!-- Fragment Title Names -->
+    <string name="first_day">Ден 1</string>
+    <string name="speakers">Лектори</string>
+    <string name="venue">Местоположение</string>
+    <string name="partners">Партньори</string>
+    <!-- ActionBar Buttons Names -->
+    <string name="action_refresh">Обнови</string>
+    <string name="action_settings">Настройки</string>
+    <!-- Activity Titles -->
+    <string name="title_activity_lecture_details">Лекция</string>
+    <string name="title_activity_speaker_details">Лектор</string>
+    <string name="title_activity_settings">Настройки</string>
+    <!-- Nav Drawer -->
+    <string name="navigation_drawer_open">Отвори навигационото меню</string>
+    <string name="navigation_drawer_close">Затвори навигационото меню</string>
+    <!-- Venue Fragment -->
+    <string name="public_transport_label">Градски Транспорт</string>
+    <string name="public_transport_lines">Може да се привижите до мястото с автобусни линии №: 1, 10, 111. Моля проверете разписанието на граския транспорт.</string>
+    <string name="title_location">PlovDev Конференция</string>
+    <string name="snippet">Палата Киров(бул. Марица, на около 200м от панаирния мост)</string>
+    <!-- Partners Fragment -->
+    <string name="title_thanks">Специални благодарности</string>
+    <string name="thanks">Благодарим на нашите спонсори и ентусиастите, без които събитието щеше да бъде само поредната мисъл родила се в замечтания поглед на един отнесен в мечтите си програмист.</string>
+    <!-- SpeakerDetails Activity -->
+    <string name="lecture_list">Списък с лекции:</string>
+    <!-- Settings Activity -->
+    <string name="List_language_title">Изберете език</string>
+    <string name="List_language_summary">Смяна на основния език на приложението</string>
+    <string name="toast_text">Трябва да затворите приложението за да влезе в сила промяната на езика!</string>
+
+</resources>

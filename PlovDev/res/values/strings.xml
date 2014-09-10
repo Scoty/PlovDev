@@ -2,23 +2,34 @@
 <resources>
 
     <string name="app_name">PlovDev</string>
+    <!-- Fragment Title Names -->
     <string name="first_day">Day 1</string>
-    <string name="title_activity_lecture_details">Lecture</string>
     <string name="speakers">Speakers</string>
-    <string name="speaker_details">Speaker</string>
     <string name="venue">Venue</string>
     <string name="partners">Partners</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- ActionBar Buttons Names -->
     <string name="action_refresh">Refresh</string>
     <string name="action_settings">Settings</string>
+    <!-- Activity Titles -->
+    <string name="title_activity_lecture_details">Lecture</string>
+    <string name="title_activity_speaker_details">Speaker</string>
+    <string name="title_activity_settings">Settings</string>
+    <!-- Nav Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- Venue Fragment -->
     <string name="public_transport_label">Public Transport Lines</string>
     <string name="public_transport_lines">You can reach the venue using one of the following bus lines: 1, 10, 111. Please make sure that you check the schedule of the public transport.</string>
-    <string name="title_activity_speaker_details">Speaker</string>
-    <string name="title_thanks">Special Thanks</string>
-    <string name="thanks">We want to say big thanks to our sponsors! Whitout them this event would be just a dream in our eyes. You can tap the images below to go to their webpages and show them some love!</string>
     <string name="title_location">PlovDev Conference</string>
     <string name="snippet">Kirov Palace(Maritza Str. near Panair bridge)</string>
+    <!-- Partners Fragment -->
+    <string name="title_thanks">Special Thanks</string>
+    <string name="thanks">We want to say big thanks to our sponsors! Whitout them this event would be just a dream in our eyes. You can tap the images below to go to their webpages and show them some love!</string>
+    <!-- SpeakerDetails Activity -->
     <string name="lecture_list">Lectures List:</string>
-
+    <!-- Settings Activity -->
+    <string name="List_language_title">Select language</string>
+    <string name="List_language_summary">Change the application default language</string>
+	<string name="toast_text">You need to close the app for this change to take effect!</string>
+	
 </resources>
