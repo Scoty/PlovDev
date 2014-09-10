@@ -1,7 +1,8 @@
 package com.proxiad.plovdev;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -16,7 +17,7 @@ public class LectureDetailsActivity extends Activity {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		if (savedInstanceState != null) {
 			this.position = savedInstanceState.getInt("position");
@@ -43,12 +44,12 @@ public class LectureDetailsActivity extends Activity {
 	}
 
 	@Override
-	public void onSaveInstanceState(Bundle outState) {
+	protected void onSaveInstanceState(Bundle outState) {
 		outState.putInt("position", position);
 	}
 
 	@Override
-	public void onResume() {
+	protected void onResume() {
 		super.onResume();
 		getActionBar().setTitle(R.string.title_activity_lecture_details);
 	}

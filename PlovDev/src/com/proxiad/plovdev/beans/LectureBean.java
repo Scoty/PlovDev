@@ -24,8 +24,6 @@ public class LectureBean implements Serializable {
 		this.name = name;
 		this.description = description;
 		this.speaker = speaker;
-		// this.speaker.getLectures().add(this); //auto add current lecture to
-		// the list! null ?!?
 	}
 
 	public Timestamp getBeginHour() {

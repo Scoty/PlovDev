@@ -31,5 +31,8 @@
     <string name="List_language_title">Изберете език</string>
     <string name="List_language_summary">Смяна на основния език на приложението</string>
     <string name="toast_text">Трябва да затворите приложението за да влезе в сила промяната на езика!</string>
+     <!-- Content Desc -->
+    <string name="content_desc_partner">Картинката на спонсора</string>
+    <string name="content_desc_main_activity_logo">Логото на PlovDev</string>
 
 </resources>

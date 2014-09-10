@@ -236,6 +236,8 @@ int string common_google_play_services_update_text 0x7f07000d
 int string common_google_play_services_update_title 0x7f07000c
 int string common_signin_button_text 0x7f070017
 int string common_signin_button_text_long 0x7f070018
+int string content_desc_main_activity_logo 0x7f070031
+int string content_desc_partner 0x7f070030
 int string first_day 0x7f07001b
 int string lecture_list 0x7f07002c
 int string navigation_drawer_close 0x7f070025

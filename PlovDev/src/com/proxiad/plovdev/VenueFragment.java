@@ -39,6 +39,10 @@ public class VenueFragment extends Fragment {
 		return view;
 	}
 
+	/**
+	 * TODO: Clickable marker TODO: Current location TODO: Navigation
+	 */
+
 	@Override
 	public void onStart() {
 		super.onStart();

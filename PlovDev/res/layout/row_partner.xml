@@ -9,9 +9,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:contentDescription="@string/content_desc_partner"
         android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:paddingTop="4dp"
-        android:paddingLeft="8dp" />
+        android:paddingTop="4dp" />
 
 </RelativeLayout>

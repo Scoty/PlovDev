@@ -30,6 +30,9 @@
     <!-- Settings Activity -->
     <string name="List_language_title">Select language</string>
     <string name="List_language_summary">Change the application default language</string>
-	<string name="toast_text">You need to close the app for this change to take effect!</string>
-	
+    <string name="toast_text">You need to close the app for this change to take effect!</string>
+    <!-- Content Desc -->
+    <string name="content_desc_partner">Image of the partner</string>
+    <string name="content_desc_main_activity_logo">The logo of PlovDev</string>
+   
 </resources>

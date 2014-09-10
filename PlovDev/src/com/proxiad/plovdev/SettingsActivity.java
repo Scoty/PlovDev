@@ -11,10 +11,9 @@ import android.widget.Toast;
 @SuppressWarnings("deprecation")
 // the absurd is that the PreferenceFragment is NOT in the support lib...
 public class SettingsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
-
+	// used without getter and setter
 	public static final String KEY_PREF_LIST_LANGUAGE = "pref_list_language";
 
-	// the absurd is that the PreferenceFragment is NOT in the support lib...
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

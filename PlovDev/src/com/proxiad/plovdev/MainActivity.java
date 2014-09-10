@@ -22,7 +22,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 public class MainActivity extends FragmentActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-
+	// tags for easier find
 	private final String mainFragmentTag = "mainFragment";
 	private final String speakersFragmentTag = "speakersFragment";
 	private final String venueFragmentTag = "venueFragment";
@@ -33,19 +33,12 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 	private Fragment venueFragment;
 	private Fragment partnersFragment;
 
-	private int position;
-
-	/**
-	 * Fragment managing the behaviors, interactions and presentation of the
-	 * navigation drawer.
-	 */
 	private NavigationDrawerFragment mNavigationDrawerFragment;
-
+	// holds the position of the currently selected item in the Nav Drawer
+	// fragment
+	private int position;
+	// holds the title of the fragment being shown
 	private CharSequence mTitle;
-
-	public NavigationDrawerFragment getNavigationDrawerFragment() {
-		return mNavigationDrawerFragment;
-	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +52,13 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 	}
 
 	@Override
-	public void onResume() {
+	protected void onResume() {
 		super.onResume();
 		getActionBar().setTitle(R.string.first_day);
 	}
 
-	public void onRetoreInstanceState(Bundle savedInstanceState) {
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		mainFragment = fragmentManager.getFragment(savedInstanceState, mainFragmentTag);
 		speakersFragment = fragmentManager.getFragment(savedInstanceState, speakersFragmentTag);
@@ -75,7 +69,9 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 	}
 
 	@Override
-	public void onSaveInstanceState(Bundle outState) {
+	protected void onSaveInstanceState(Bundle outState) {
+		// save the currently selected fragment and the fragments instances for
+		// reuse (should I use retained fragments ?)
 		super.onSaveInstanceState(outState);
 		outState.putInt("position", position);
 
@@ -96,7 +92,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 
 	@Override
 	public void onNavigationDrawerItemSelected(int position) {
-		// update the main content by replacing fragments
+		// update the main content by showing and hiding fragments
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		hideAllFragments(fragmentManager);
 		this.position = position;
@@ -139,31 +135,9 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 		}
 	}
 
-	public void restoreActionBar() {
-		ActionBar actionBar = getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-		actionBar.setDisplayShowTitleEnabled(true);
-		actionBar.setTitle(mTitle);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		if (!mNavigationDrawerFragment.isDrawerOpen()) {
-			// Only show items in the action bar relevant to this screen
-			// if the drawer is not showing. Otherwise, let the drawer
-			// decide what to show in the action bar.
-			getMenuInflater().inflate(R.menu.main, menu);
-			restoreActionBar();
-			return true;
-		}
-		return super.onCreateOptionsMenu(menu);
-	}
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
+		// Back pressed are auto-handled if parent activity is declared
 		int id = item.getItemId();
 		if (id == R.id.action_settings) {
 			Intent intent = new Intent(this, SettingsActivity.class);
@@ -173,6 +147,14 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 		return super.onOptionsItemSelected(item);
 	}
 
+	/**
+	 * Custom navigation -> on back pressed always show the main fragment, or
+	 * close the application if the main fragment is shown
+	 * 
+	 * (non-Javadoc)
+	 * 
+	 * @see android.support.v4.app.FragmentActivity#onBackPressed()
+	 */
 	@Override
 	public void onBackPressed() {
 		FragmentManager fragmentManager = getSupportFragmentManager();
@@ -181,27 +163,25 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 			return;
 		}
 		if (mainFragment == null) {
-			this.position = 0;
 			mainFragment = fragmentManager.findFragmentByTag(mainFragmentTag);
 			if (mainFragment == null) {
 				mainFragment = new MainFragment();
 				fragmentManager.beginTransaction().add(R.id.container, mainFragment, mainFragmentTag).commit();
 			}
-			hideAllFragments(fragmentManager);
-			fragmentManager.beginTransaction().show(mainFragment).commit();
-			mNavigationDrawerFragment.setCurrentPosition(0);
-			getActionBar().setTitle(R.string.first_day);
+			hideAllFragmentsAndShowTheMainFragment(fragmentManager);
 		} else if (mainFragment.isHidden()) {
-			this.position = 0;
-			hideAllFragments(fragmentManager);
-			fragmentManager.beginTransaction().show(mainFragment).commit();
-			mNavigationDrawerFragment.setCurrentPosition(0);
-			getActionBar().setTitle(R.string.first_day);
+			hideAllFragmentsAndShowTheMainFragment(fragmentManager);
 		} else {
 			super.onBackPressed();
 		}
 	}
 
+	/**
+	 * Click listener for handling the clicks of the logo Used in
+	 * activity_main.xml
+	 * 
+	 * @param View
+	 */
 	public void onLogoClicked(View view) {
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		if (mainFragment == null) {
@@ -224,13 +204,17 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 		}
 	}
 
-	private void hideAllFragments(FragmentManager fragmentManager) {
-		List<Fragment> fragments = fragmentManager.getFragments();
-		for (Fragment fragment : fragments) {
-			if (fragment.getId() != R.id.navigation_drawer) {
-				fragmentManager.beginTransaction().hide(fragment).commit();
-			}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		if (!mNavigationDrawerFragment.isDrawerOpen()) {
+			// Only show items in the action bar relevant to this screen
+			// if the drawer is not showing. Otherwise, let the drawer
+			// decide what to show in the action bar.
+			getMenuInflater().inflate(R.menu.main, menu);
+			restoreActionBar();
+			return true;
 		}
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	private void setLocale(Context context) {
@@ -242,5 +226,42 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 		Configuration conf = res.getConfiguration();
 		conf.locale = locale;
 		res.updateConfiguration(conf, dm);
+	}
+
+	/**
+	 * Hide all fragments and shows only the main one
+	 * 
+	 * @param fragmentManager
+	 */
+	private void hideAllFragmentsAndShowTheMainFragment(FragmentManager fragmentManager) {
+		this.position = 0;
+		hideAllFragments(fragmentManager);
+		fragmentManager.beginTransaction().show(mainFragment).commit();
+		mNavigationDrawerFragment.setCurrentPosition(0);
+		getActionBar().setTitle(R.string.first_day);
+	}
+
+	/**
+	 * Hide all fragments
+	 * 
+	 * @param fragmentManager
+	 */
+	private void hideAllFragments(FragmentManager fragmentManager) {
+		List<Fragment> fragments = fragmentManager.getFragments();
+		for (Fragment fragment : fragments) {
+			if (fragment.getId() != R.id.navigation_drawer) {
+				fragmentManager.beginTransaction().hide(fragment).commit();
+			}
+		}
+	}
+
+	/**
+	 * Restores the action bar on recreation
+	 */
+	private void restoreActionBar() {
+		ActionBar actionBar = getActionBar();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+		actionBar.setDisplayShowTitleEnabled(true);
+		actionBar.setTitle(mTitle);
 	}
 }

@@ -714,6 +714,11 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070018;
+        public static final int content_desc_main_activity_logo=0x7f070031;
+        /**  Content Desc 
+ Content Desc 
+         */
+        public static final int content_desc_partner=0x7f070030;
         /**  Fragment Title Names 
  Fragment Title Names 
          */

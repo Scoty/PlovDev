@@ -11,6 +11,8 @@ import com.proxiad.plovdev.beans.SpeakerBean;
 
 public class DataParser {
 
+	private static boolean isDataParsed;
+
 	private static List<LectureBean> lectures;
 	private static List<SpeakerBean> speakers;
 
@@ -72,12 +74,16 @@ public class DataParser {
 	}
 
 	public static List<LectureBean> getLectures() {
-		parseData();
+		if (!isDataParsed) {
+			parseData();
+		}
 		return lectures;
 	}
 
 	public static List<SpeakerBean> getSpeakers() {
-		parseData();
+		if (!isDataParsed) {
+			parseData();
+		}
 		return speakers;
 	}
 
@@ -120,5 +126,5 @@ public class DataParser {
 	public static SpeakerBean getSpeaker(int location) {
 		return speakers.get(location);
 	}
-	
+
 }
