@@ -31,7 +31,8 @@ public class SpeakerDetailsActivity extends ListActivity {
 		speaker = DataParser.getSpeaker(position);
 		setContentView(R.layout.activity_speaker_details);
 		@SuppressLint("InflateParams") 
-		View header = getLayoutInflater().inflate(R.layout.header_lecture_for_speaker, this.getListView());
+		View header = getLayoutInflater().inflate(R.layout.header_lecture_for_speaker, null);
+		//no need for parent view! FCK LINT!
 
 		ImageView speakerImageView = (ImageView) header.findViewById(R.id.imageSpeakerPortrait);
 		TextView nameSpeakerView = (TextView) header.findViewById(R.id.nameSpeaker);
