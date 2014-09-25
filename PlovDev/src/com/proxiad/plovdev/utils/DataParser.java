@@ -1,8 +1,23 @@
 package com.proxiad.plovdev.utils;
 
-import java.sql.Timestamp;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.AsyncTask;
+import android.util.Log;
 
 import com.proxiad.plovdev.R;
 import com.proxiad.plovdev.beans.LectureBean;
@@ -11,62 +26,100 @@ import com.proxiad.plovdev.beans.SpeakerBean;
 
 public class DataParser {
 
+	private static final String URL_SPEAKERS = "http://2013.plovdev.com/data/speakers.json";
+	private static final String URL_LECTURES = "http://2013.plovdev.com/data/program.json";
+
 	private static boolean isDataParsed;
 
 	private static List<LectureBean> lectures;
 	private static List<SpeakerBean> speakers;
 
 	private static void parseData() {
-		// this method is always executed at the application init
-		Timestamp beginHour = Timestamp.valueOf("2014-08-25 10:00:00");
-		Timestamp endHour = Timestamp.valueOf("2014-08-25 11:00:00");
-		String name = "Introduction to Java";
-		String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-		// speaker
-		String bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-		SpeakerBean speakerAnton = new SpeakerBean(R.drawable.speaker_anton_antonov, "Anton Antonov", bio, new ArrayList<LectureBean>());
-		SpeakerBean speakerMark = new SpeakerBean(R.drawable.speaker_mark_rogers, "Mark Rogers", bio, new ArrayList<LectureBean>());
-		SpeakerBean speakerZdravko = new SpeakerBean(R.drawable.speaker_zdravko_nestorov, "Zdravko Nestorov", bio, new ArrayList<LectureBean>());
-		SpeakerBean speakerGenadi = new SpeakerBean(R.drawable.speaker_genadi_ivanov, "Genadi Ivanov", bio, new ArrayList<LectureBean>());
-		speakers = new ArrayList<SpeakerBean>();
-		speakers.add(speakerAnton);
-		speakers.add(speakerMark);
-		speakers.add(speakerZdravko);
-		speakers.add(speakerGenadi);
 
-		LectureBean lec1 = new LectureBean(beginHour, endHour, name + " 1", description, speakerAnton);
-		LectureBean lec2 = new LectureBean(beginHour, endHour, name + " 2", description, speakerMark);
-		LectureBean lec3 = new LectureBean(beginHour, endHour, name + " 3", description, speakerZdravko);
-		LectureBean lec4 = new LectureBean(beginHour, endHour, name + " 4", description, speakerGenadi);
-		LectureBean lec5 = new LectureBean(beginHour, endHour, name + " 5", description, speakerMark);
-		LectureBean lec6 = new LectureBean(beginHour, endHour, name + " 6", description, speakerMark);
-		LectureBean lec7 = new LectureBean(beginHour, endHour, name + " 7", description, speakerGenadi);
-		LectureBean lec8 = new LectureBean(beginHour, endHour, name + " 8", description, speakerGenadi);
-		LectureBean lec9 = new LectureBean(beginHour, endHour, name + " 9", description, speakerMark);
-		LectureBean lec10 = new LectureBean(beginHour, endHour, name + " 10", description, speakerMark);
-		LectureBean lec11 = new LectureBean(beginHour, endHour, name + " 11", description, speakerZdravko);
-		LectureBean lec12 = new LectureBean(beginHour, endHour, name + " 12", description, speakerMark);
-		LectureBean lec13 = new LectureBean(beginHour, endHour, name + " 13", description, speakerZdravko);
-		LectureBean lec14 = new LectureBean(beginHour, endHour, name + " 14", description, speakerAnton);
-		lectures = new ArrayList<LectureBean>();
-		lectures.add(lec1);
-		lectures.add(lec2);
-		lectures.add(lec3);
-		lectures.add(lec4);
-		lectures.add(lec5);
-		lectures.add(lec6);
-		lectures.add(lec7);
-		lectures.add(lec8);
-		lectures.add(lec9);
-		lectures.add(lec10);
-		lectures.add(lec11);
-		lectures.add(lec12);
-		lectures.add(lec13);
-		lectures.add(lec14);
+		String speakersJsonString = null;
+		try {
+			speakersJsonString = new JsonRetriever().execute(URL_SPEAKERS).get();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JSONArray speakersJsonArray;
+		if (speakersJsonString != null) {
+			try {
+				speakersJsonArray = new JSONArray(speakersJsonString);
+				speakers = new ArrayList<SpeakerBean>();
+				for (int i = 0; i < speakersJsonArray.length(); i++) {
+					JSONObject speakerJson = speakersJsonArray.getJSONObject(i);
+					String speakerId = speakerJson.getString("id");
+					// String name = speakerJson.getString("name");
+					// String imgUrl = speakerJson.getString("imgUrl");
+					String name = "";
+					String imgUrl = "";
+					// String personalPageUrl =
+					// speakerJson.getString("personalPage");
+					String personalPageUrl = "";
+//					String companyName = speakerJson.getJSONObject("company").getString("name");
+//					String companyUrl = speakerJson.getJSONObject("company").getString("url");
+					String companyName = "";
+					String companyUrl = "";
+
+					String bio = speakerJson.getString("resume");
+
+					SpeakerBean speaker = new SpeakerBean(R.drawable.speaker_anton_antonov, speakerId, name, imgUrl, personalPageUrl, companyName,
+							companyUrl, bio, new ArrayList<LectureBean>());
+					speakers.add(speaker);
+
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		String lecturesJsonString = null;
+		try {
+			lecturesJsonString = new JsonRetriever().execute(URL_LECTURES).get();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ExecutionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		JSONArray lecturesJsonArray;
+		if (lecturesJsonString != null) {
+			try {
+				lecturesJsonArray = new JSONArray(lecturesJsonString);
+				lectures = new ArrayList<LectureBean>();
+				for (int i = 0; i < lecturesJsonArray.length(); i++) {
+					JSONObject lectureJson = lecturesJsonArray.getJSONObject(i);
+					if (lectureJson.has("speaker")) {
+						String startTimeAsString = lectureJson.getString("start");
+						String name = lectureJson.getString("title");
+						String speakerId = lectureJson.getJSONObject("speaker").getString("id");
+						LectureBean lecture = new LectureBean(startTimeAsString, name, speakerId);
+						lectures.add(lecture);
+					} else {
+						// TODO Add the breaks
+					}
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		// getStringFromJson(""); PARTNERS
+
+		// Log.e("Aaaaa ", lecturesJsonString + speakersJsonString);
 
 		for (LectureBean lecture : lectures) {
 			for (SpeakerBean speaker : speakers) {
-				if (lecture.getSpeaker().equals(speaker)) {
+				if (lecture.getIdSpeaker().equals(speaker.getSpeakerId())) {
+					lecture.setSpeaker(speaker);
 					speaker.getLectures().add(lecture);
 				}
 			}
@@ -125,6 +178,44 @@ public class DataParser {
 
 	public static SpeakerBean getSpeaker(int location) {
 		return speakers.get(location);
+	}
+}
+
+class JsonRetriever extends AsyncTask<String, Void, String> {
+
+	@Override
+	protected String doInBackground(String... params) {
+		DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
+		HttpPost httppost = new HttpPost(params[0]);
+		httppost.setHeader("Content-type", "application/json");
+
+		InputStream inputStream = null;
+		String result = null;
+
+		try {
+			HttpResponse response = httpclient.execute(httppost);
+			HttpEntity entity = response.getEntity();
+
+			inputStream = entity.getContent();
+			// json is UTF-8 by default
+			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
+			StringBuilder sb = new StringBuilder();
+
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+			result = sb.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (inputStream != null)
+					inputStream.close();
+			} catch (Exception squish) {
+			}
+		}
+		return result;
 	}
 
 }

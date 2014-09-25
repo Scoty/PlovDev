@@ -1,45 +1,43 @@
 package com.proxiad.plovdev.beans;
 
-import android.annotation.SuppressLint;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class LectureBean implements Serializable {
 
 	private static final long serialVersionUID = 4772024428525844855L;
-	private Timestamp beginHour;
-	private Timestamp endHour;
+	private String startTimeAsString;
+	private Timestamp startTime;
 	private String name;
 	private String description;
+	private String idSpeaker;
 	private SpeakerBean speaker;
+	
+	public LectureBean(String startTimeAsString, String name, String idSpeaker) {
+		super();
+		this.startTimeAsString = startTimeAsString;
+		this.name = name;
+		this.idSpeaker = idSpeaker;
+	}
 
 	public LectureBean() {
 		super();
 	}
 
-	public LectureBean(Timestamp beginHour, Timestamp endHour, String name, String description, SpeakerBean speaker) {
-		super();
-		this.beginHour = beginHour;
-		this.endHour = endHour;
-		this.name = name;
-		this.description = description;
-		this.speaker = speaker;
+	public String getStartTimeAsString() {
+		return startTimeAsString;
 	}
 
-	public Timestamp getBeginHour() {
-		return beginHour;
+	public void setStartTimeAsString(String startTimeAsString) {
+		this.startTimeAsString = startTimeAsString;
 	}
 
-	public void setBeginHour(Timestamp beginHour) {
-		this.beginHour = beginHour;
+	public Timestamp getStartTime() {
+		return startTime;
 	}
 
-	public Timestamp getEndHour() {
-		return endHour;
-	}
-
-	public void setEndHour(Timestamp endHour) {
-		this.endHour = endHour;
+	public void setStartTime(Timestamp startTime) {
+		this.startTime = startTime;
 	}
 
 	public String getName() {
@@ -58,6 +56,14 @@ public class LectureBean implements Serializable {
 		this.description = description;
 	}
 
+	public String getIdSpeaker() {
+		return idSpeaker;
+	}
+
+	public void setIdSpeaker(String idSpeaker) {
+		this.idSpeaker = idSpeaker;
+	}
+
 	public SpeakerBean getSpeaker() {
 		return speaker;
 	}
@@ -66,13 +72,9 @@ public class LectureBean implements Serializable {
 		this.speaker = speaker;
 	}
 
-	@SuppressLint("DefaultLocale") @SuppressWarnings("deprecation")
+
 	public String getTimePeriodName() {
-		String beginHour = String.format("%02d", this.beginHour.getHours());
-		String beginMinutes = String.format("%02d", this.beginHour.getMinutes());
-		String endHour = String.format("%02d", this.endHour.getHours());
-		String endMinutes = String.format("%02d", this.endHour.getMinutes());
-		String timePeriodName = "(" + beginHour + ":" + beginMinutes + " - " + endHour + ":" + endMinutes + ") " + this.name;
+		String timePeriodName = "(" + ") " + this.name;
 		return timePeriodName;
 	}
 

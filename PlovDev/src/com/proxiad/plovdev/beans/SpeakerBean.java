@@ -6,18 +6,39 @@ import java.util.List;
 public class SpeakerBean implements Serializable{
 
 	private static final long serialVersionUID = -3559477671554703845L;
+	
 	private int portraitId;
+	
+	private String speakerId;
 	private String name;
+	private String imgUrl;
+	private String personalPageUrl;
+	private String companyName;
+	private String companyUrl;
 	private String bio;
 	private List<LectureBean> lectures;
 
-	public SpeakerBean(int portraitId, String name, String bio, List<LectureBean> lectures) {
+	public SpeakerBean(int portraitId, String speakerId, String name, String imgUrl, String personalPageUrl, String companyName, String companyUrl,
+			String bio, List<LectureBean> lectures) {
 		super();
 		this.portraitId = portraitId;
+		this.speakerId = speakerId;
 		this.name = name;
+		this.imgUrl = imgUrl;
+		this.personalPageUrl = personalPageUrl;
+		this.companyName = companyName;
+		this.companyUrl = companyUrl;
 		this.bio = bio;
 		this.lectures = lectures;
 	}
+
+
+
+	public SpeakerBean() {
+		super();
+	}
+
+
 
 	public int getPortraitId() {
 		return portraitId;
@@ -27,8 +48,12 @@ public class SpeakerBean implements Serializable{
 		this.portraitId = portraitId;
 	}
 
-	public SpeakerBean() {
-		super();
+	public String getSpeakerId() {
+		return speakerId;
+	}
+
+	public void setSpeakerId(String speakerId) {
+		this.speakerId = speakerId;
 	}
 
 	public String getName() {
@@ -37,6 +62,38 @@ public class SpeakerBean implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public String getPersonalPageUrl() {
+		return personalPageUrl;
+	}
+
+	public void setPersonalPageUrl(String personalPageUrl) {
+		this.personalPageUrl = personalPageUrl;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getCompanyUrl() {
+		return companyUrl;
+	}
+
+	public void setCompanyUrl(String companyUrl) {
+		this.companyUrl = companyUrl;
 	}
 
 	public String getBio() {
