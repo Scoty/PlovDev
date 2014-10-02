@@ -14,7 +14,7 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#33B5E5"
+        android:textColor="#43b3fb"
         android:textStyle="bold" />
 
     <com.proxiad.plovdev.utils.CircularImageView

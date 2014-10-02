@@ -3,12 +3,13 @@ package com.proxiad.plovdev.beans;
 import java.io.Serializable;
 import java.util.List;
 
-public class SpeakerBean implements Serializable{
+import android.graphics.drawable.Drawable;
+
+public class SpeakerBean implements Serializable {
 
 	private static final long serialVersionUID = -3559477671554703845L;
-	
-	private int portraitId;
-	
+
+	private Drawable portraitDrawable;
 	private String speakerId;
 	private String name;
 	private String imgUrl;
@@ -18,10 +19,10 @@ public class SpeakerBean implements Serializable{
 	private String bio;
 	private List<LectureBean> lectures;
 
-	public SpeakerBean(int portraitId, String speakerId, String name, String imgUrl, String personalPageUrl, String companyName, String companyUrl,
-			String bio, List<LectureBean> lectures) {
+	public SpeakerBean(Drawable portraitDrawable, String speakerId, String name, String imgUrl, String personalPageUrl, String companyName,
+			String companyUrl, String bio, List<LectureBean> lectures) {
 		super();
-		this.portraitId = portraitId;
+		this.portraitDrawable = portraitDrawable;
 		this.speakerId = speakerId;
 		this.name = name;
 		this.imgUrl = imgUrl;
@@ -32,20 +33,16 @@ public class SpeakerBean implements Serializable{
 		this.lectures = lectures;
 	}
 
-
-
 	public SpeakerBean() {
 		super();
 	}
 
-
-
-	public int getPortraitId() {
-		return portraitId;
+	public Drawable getPortraitDrawable() {
+		return portraitDrawable;
 	}
 
-	public void setPortraitId(int portraitId) {
-		this.portraitId = portraitId;
+	public void setPortraitDrawable(Drawable portraitDrawable) {
+		this.portraitDrawable = portraitDrawable;
 	}
 
 	public String getSpeakerId() {
@@ -118,7 +115,6 @@ public class SpeakerBean implements Serializable{
 		int result = 1;
 		result = prime * result + ((bio == null) ? 0 : bio.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + portraitId;
 		return result;
 	}
 
@@ -141,8 +137,8 @@ public class SpeakerBean implements Serializable{
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (portraitId != other.portraitId)
-			return false;
 		return true;
 	}
+
+
 }

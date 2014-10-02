@@ -529,27 +529,28 @@ containing a value of this type.
         public static final int progress_horizontal_plovdevactionbar=0x7f020039;
         public static final int progress_primary_plovdevactionbar=0x7f02003a;
         public static final int progress_secondary_plovdevactionbar=0x7f02003b;
-        public static final int selectable_background_plovdevactionbar=0x7f02003c;
-        public static final int speaker_anton_antonov=0x7f02003d;
-        public static final int speaker_genadi_ivanov=0x7f02003e;
-        public static final int speaker_mark_rogers=0x7f02003f;
-        public static final int speaker_zdravko_nestorov=0x7f020040;
-        public static final int spinner_ab_default_plovdevactionbar=0x7f020041;
-        public static final int spinner_ab_disabled_plovdevactionbar=0x7f020042;
-        public static final int spinner_ab_focused_plovdevactionbar=0x7f020043;
-        public static final int spinner_ab_pressed_plovdevactionbar=0x7f020044;
-        public static final int spinner_background_ab_plovdevactionbar=0x7f020045;
-        public static final int tab_indicator_ab_plovdevactionbar=0x7f020046;
-        public static final int tab_selected_focused_plovdevactionbar=0x7f020047;
-        public static final int tab_selected_plovdevactionbar=0x7f020048;
-        public static final int tab_selected_pressed_plovdevactionbar=0x7f020049;
-        public static final int tab_unselected_focused_plovdevactionbar=0x7f02004a;
-        public static final int tab_unselected_plovdevactionbar=0x7f02004b;
-        public static final int tab_unselected_pressed_plovdevactionbar=0x7f02004c;
+        public static final int rectangle_blue_rounded=0x7f02003c;
+        public static final int selectable_background_plovdevactionbar=0x7f02003d;
+        public static final int speaker_anton_antonov=0x7f02003e;
+        public static final int speaker_genadi_ivanov=0x7f02003f;
+        public static final int speaker_mark_rogers=0x7f020040;
+        public static final int speaker_zdravko_nestorov=0x7f020041;
+        public static final int spinner_ab_default_plovdevactionbar=0x7f020042;
+        public static final int spinner_ab_disabled_plovdevactionbar=0x7f020043;
+        public static final int spinner_ab_focused_plovdevactionbar=0x7f020044;
+        public static final int spinner_ab_pressed_plovdevactionbar=0x7f020045;
+        public static final int spinner_background_ab_plovdevactionbar=0x7f020046;
+        public static final int tab_indicator_ab_plovdevactionbar=0x7f020047;
+        public static final int tab_selected_focused_plovdevactionbar=0x7f020048;
+        public static final int tab_selected_plovdevactionbar=0x7f020049;
+        public static final int tab_selected_pressed_plovdevactionbar=0x7f02004a;
+        public static final int tab_unselected_focused_plovdevactionbar=0x7f02004b;
+        public static final int tab_unselected_plovdevactionbar=0x7f02004c;
+        public static final int tab_unselected_pressed_plovdevactionbar=0x7f02004d;
     }
     public static final class id {
-        public static final int action_refresh=0x7f080029;
-        public static final int action_settings=0x7f080028;
+        public static final int action_refresh=0x7f08002b;
+        public static final int action_settings=0x7f08002a;
         public static final int bioSpeaker=0x7f080023;
         public static final int book_now=0x7f080010;
         public static final int buyButton=0x7f08000a;
@@ -558,7 +559,7 @@ containing a value of this type.
         public static final int classic=0x7f080011;
         public static final int container=0x7f08001b;
         public static final int descLecture=0x7f080017;
-        public static final int description=0x7f080026;
+        public static final int description=0x7f080027;
         public static final int drawer_layout=0x7f080018;
         public static final int grayscale=0x7f080012;
         public static final int holo_dark=0x7f080005;
@@ -570,13 +571,14 @@ containing a value of this type.
         public static final int map_container=0x7f080021;
         public static final int match_parent=0x7f08000c;
         public static final int monochrome=0x7f080013;
+        public static final int name=0x7f080026;
         public static final int nameLecture=0x7f080015;
         public static final int nameSpeaker=0x7f080022;
         public static final int navigation_drawer=0x7f08001c;
         public static final int none=0x7f080000;
         public static final int normal=0x7f080001;
         public static final int parent=0x7f080019;
-        public static final int partnerImageView=0x7f080027;
+        public static final int partnerImageView=0x7f080029;
         public static final int production=0x7f080007;
         public static final int public_transport_label=0x7f08001f;
         public static final int public_transport_lines=0x7f080020;
@@ -588,7 +590,8 @@ containing a value of this type.
         public static final int terrain=0x7f080003;
         public static final int thanks=0x7f08001e;
         public static final int thanksTitle=0x7f08001d;
-        public static final int timePeriod=0x7f080025;
+        public static final int time=0x7f080025;
+        public static final int timePeriod=0x7f080028;
         public static final int wrap_content=0x7f08000d;
     }
     public static final class integer {

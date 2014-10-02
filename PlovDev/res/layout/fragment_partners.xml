@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/title_thanks"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#33B5E5"
+        android:textColor="#43b3fb"
         android:textStyle="bold" />
 
     <TextView

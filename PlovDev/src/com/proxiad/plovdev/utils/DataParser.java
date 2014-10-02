@@ -1,23 +1,16 @@
 package com.proxiad.plovdev.utils;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.AsyncTask;
-import android.util.Log;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 
 import com.proxiad.plovdev.R;
 import com.proxiad.plovdev.beans.LectureBean;
@@ -26,8 +19,11 @@ import com.proxiad.plovdev.beans.SpeakerBean;
 
 public class DataParser {
 
-	private static final String URL_SPEAKERS = "http://2013.plovdev.com/data/speakers.json";
-	private static final String URL_LECTURES = "http://2013.plovdev.com/data/program.json";
+	public static Context context;
+
+	private static final String URL_WEB_PAGE = "http://2013.plovdev.com/";
+	private static final String URL_SPEAKERS = URL_WEB_PAGE + "data/speakers.json";
+	private static final String URL_LECTURES = URL_WEB_PAGE + "data/program.json";
 
 	private static boolean isDataParsed;
 
@@ -35,10 +31,10 @@ public class DataParser {
 	private static List<SpeakerBean> speakers;
 
 	private static void parseData() {
-
+		// parse speakers json
 		String speakersJsonString = null;
 		try {
-			speakersJsonString = new JsonRetriever().execute(URL_SPEAKERS).get();
+			speakersJsonString = new JsonUtils().execute(URL_SPEAKERS).get();
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -53,25 +49,36 @@ public class DataParser {
 				speakers = new ArrayList<SpeakerBean>();
 				for (int i = 0; i < speakersJsonArray.length(); i++) {
 					JSONObject speakerJson = speakersJsonArray.getJSONObject(i);
-					String speakerId = speakerJson.getString("id");
-					// String name = speakerJson.getString("name");
-					// String imgUrl = speakerJson.getString("imgUrl");
-					String name = "";
-					String imgUrl = "";
-					// String personalPageUrl =
-					// speakerJson.getString("personalPage");
-					String personalPageUrl = "";
-//					String companyName = speakerJson.getJSONObject("company").getString("name");
-//					String companyUrl = speakerJson.getJSONObject("company").getString("url");
+
+					String speakerId = getStringFromJson(speakerJson, "id");
+					String name = getStringFromJson(speakerJson, "name");
+					String imgUrl = getStringFromJson(speakerJson, "img");
+					String personalPageUrl = getStringFromJson(speakerJson, "personalPage");
 					String companyName = "";
 					String companyUrl = "";
+					if (speakerJson.has("company")) {
+						JSONObject company = speakerJson.getJSONObject("company");
+						companyName = getStringFromJson(company, "name");
+						companyUrl = getStringFromJson(company, "url");
+					}
+					String bio = getStringFromJson(speakerJson, "resume");
 
-					String bio = speakerJson.getString("resume");
+					Drawable speakerDrawable = ImageUtils.getCachedDrawable(speakerId);
 
-					SpeakerBean speaker = new SpeakerBean(R.drawable.speaker_anton_antonov, speakerId, name, imgUrl, personalPageUrl, companyName,
-							companyUrl, bio, new ArrayList<LectureBean>());
+					if (speakerDrawable == null) {
+						Bitmap bitmap = ImageUtils.load(URL_WEB_PAGE + imgUrl).bitmap;
+						if (bitmap != null) {
+							ImportUtils.addSpeakerPortraitToCache(speakerId, bitmap);
+							speakerDrawable = ImageUtils.getCachedDrawable(speakerId);
+						} else {
+							speakerDrawable = ImageUtils.getDefaultDrawable(context);
+						}
+
+					}
+					SpeakerBean speaker = new SpeakerBean(speakerDrawable, speakerId, name, imgUrl, personalPageUrl, companyName, companyUrl, bio,
+							new ArrayList<LectureBean>());
+
 					speakers.add(speaker);
-
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -79,9 +86,10 @@ public class DataParser {
 			}
 		}
 
+		// parse lectures json
 		String lecturesJsonString = null;
 		try {
-			lecturesJsonString = new JsonRetriever().execute(URL_LECTURES).get();
+			lecturesJsonString = new JsonUtils().execute(URL_LECTURES).get();
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -96,15 +104,19 @@ public class DataParser {
 				lectures = new ArrayList<LectureBean>();
 				for (int i = 0; i < lecturesJsonArray.length(); i++) {
 					JSONObject lectureJson = lecturesJsonArray.getJSONObject(i);
+					String startTimeAsString = getStringFromJson(lectureJson, "start");
+					String name = getStringFromJson(lectureJson, "title");
+					LectureBean lecture;
 					if (lectureJson.has("speaker")) {
-						String startTimeAsString = lectureJson.getString("start");
-						String name = lectureJson.getString("title");
-						String speakerId = lectureJson.getJSONObject("speaker").getString("id");
-						LectureBean lecture = new LectureBean(startTimeAsString, name, speakerId);
+						String speakerId = getStringFromJson(lectureJson.getJSONObject("speaker"), "id");
+						lecture = new LectureBean(startTimeAsString, name, speakerId);
 						lectures.add(lecture);
 					} else {
-						// TODO Add the breaks
+						// String icon = getStringFromJson(lectureJson, "icon");
+						// lecture = new LectureBean(startTimeAsString, name,
+						// icon);
 					}
+					// lectures.add(lecture);
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -113,8 +125,6 @@ public class DataParser {
 		}
 
 		// getStringFromJson(""); PARTNERS
-
-		// Log.e("Aaaaa ", lecturesJsonString + speakersJsonString);
 
 		for (LectureBean lecture : lectures) {
 			for (SpeakerBean speaker : speakers) {
@@ -179,43 +189,11 @@ public class DataParser {
 	public static SpeakerBean getSpeaker(int location) {
 		return speakers.get(location);
 	}
-}
 
-class JsonRetriever extends AsyncTask<String, Void, String> {
-
-	@Override
-	protected String doInBackground(String... params) {
-		DefaultHttpClient httpclient = new DefaultHttpClient(new BasicHttpParams());
-		HttpPost httppost = new HttpPost(params[0]);
-		httppost.setHeader("Content-type", "application/json");
-
-		InputStream inputStream = null;
-		String result = null;
-
-		try {
-			HttpResponse response = httpclient.execute(httppost);
-			HttpEntity entity = response.getEntity();
-
-			inputStream = entity.getContent();
-			// json is UTF-8 by default
-			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"), 8);
-			StringBuilder sb = new StringBuilder();
-
-			String line = null;
-			while ((line = reader.readLine()) != null) {
-				sb.append(line + "\n");
-			}
-			result = sb.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (inputStream != null)
-					inputStream.close();
-			} catch (Exception squish) {
-			}
+	private static String getStringFromJson(JSONObject json, String name) throws JSONException {
+		if (json.has(name)) {
+			return json.getString(name);
 		}
-		return result;
+		return "";
 	}
-
 }

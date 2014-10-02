@@ -41,7 +41,7 @@ public class SpeakerAdapter extends ArrayAdapter<SpeakerBean> {
 		}
 		
 		SpeakerBean speaker = itemsArrayList.get(position);
-		viewHolder.imageSpeakerPortraitView.setImageResource(speaker.getPortraitId());
+		viewHolder.imageSpeakerPortraitView.setImageDrawable(speaker.getPortraitDrawable());
 		viewHolder.nameSpeakerView.setText(speaker.getName());
 		viewHolder.bioSpeakerView.setText(speaker.getBio());
 

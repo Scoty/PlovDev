@@ -3,6 +3,9 @@ package com.proxiad.plovdev;
 import java.util.List;
 import java.util.Locale;
 
+import com.proxiad.plovdev.utils.DataParser;
+import com.proxiad.plovdev.utils.ImageUtils;
+
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
@@ -43,6 +46,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		DataParser.context = this;
 		setLocale(this);
 		setContentView(R.layout.activity_main);
 		ImageView logoImageView = (ImageView) findViewById(R.id.imageLogoPlovdev);
@@ -55,6 +59,12 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 	protected void onResume() {
 		super.onResume();
 		getActionBar().setTitle(R.string.first_day);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		ImageUtils.cleanupCache();
 	}
 
 	@Override

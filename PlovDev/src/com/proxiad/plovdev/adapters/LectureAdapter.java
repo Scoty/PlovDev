@@ -33,7 +33,8 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 			rowView = inflater.inflate(R.layout.row_lecture, parent, false);
 			viewHolder = new ViewHolder();
 			viewHolder.imageSpeakerPortraitView = (ImageView) rowView.findViewById(R.id.imageSpeakerPortrait);
-			viewHolder.timePeriodView = (TextView) rowView.findViewById(R.id.timePeriod);
+			viewHolder.timeView = (TextView) rowView.findViewById(R.id.time);
+			viewHolder.nameView = (TextView) rowView.findViewById(R.id.name);
 			viewHolder.descriptionView = (TextView) rowView.findViewById(R.id.description);
 			rowView.setTag(viewHolder);
 		} else {
@@ -41,8 +42,9 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 		}
 
 		LectureBean lecture = itemsArrayList.get(position);
-		viewHolder.imageSpeakerPortraitView.setImageResource(lecture.getSpeaker().getPortraitId());
-		viewHolder.timePeriodView.setText(lecture.getTimePeriodName());
+		viewHolder.imageSpeakerPortraitView.setImageDrawable(lecture.getSpeaker().getPortraitDrawable());
+		viewHolder.timeView.setText(lecture.getStartTimeAsString());
+		viewHolder.nameView.setText(lecture.getName());
 		viewHolder.descriptionView.setText(lecture.getDescription());
 
 		return rowView;
@@ -50,7 +52,8 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 
 	static class ViewHolder {
 		ImageView imageSpeakerPortraitView;
-		TextView timePeriodView;
+		TextView timeView;
+		TextView nameView;
 		TextView descriptionView;
 	}
 }

@@ -15,6 +15,7 @@ import com.proxiad.plovdev.adapters.LectureForSpeakerAdapter;
 import com.proxiad.plovdev.beans.LectureBean;
 import com.proxiad.plovdev.beans.SpeakerBean;
 import com.proxiad.plovdev.utils.DataParser;
+import com.proxiad.plovdev.utils.ImageUtils;
 
 public class SpeakerDetailsActivity extends ListActivity {
 	private int position;
@@ -30,15 +31,15 @@ public class SpeakerDetailsActivity extends ListActivity {
 		}
 		speaker = DataParser.getSpeaker(position);
 		setContentView(R.layout.activity_speaker_details);
-		@SuppressLint("InflateParams") 
+		@SuppressLint("InflateParams")
 		View header = getLayoutInflater().inflate(R.layout.header_lecture_for_speaker, null);
-		//no need for parent view! FCK LINT!
+		// no need for parent view! FCK LINT!
 
 		ImageView speakerImageView = (ImageView) header.findViewById(R.id.imageSpeakerPortrait);
 		TextView nameSpeakerView = (TextView) header.findViewById(R.id.nameSpeaker);
 		TextView bioSpeakerView = (TextView) header.findViewById(R.id.bioSpeaker);
 
-		speakerImageView.setImageResource(speaker.getPortraitId());
+		speakerImageView.setImageDrawable(speaker.getPortraitDrawable());
 		nameSpeakerView.setText(speaker.getName());
 		bioSpeakerView.setText(speaker.getBio());
 
@@ -57,6 +58,12 @@ public class SpeakerDetailsActivity extends ListActivity {
 	public void onResume() {
 		super.onResume();
 		getActionBar().setTitle(R.string.title_activity_speaker_details);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		ImageUtils.cleanupCache();
 	}
 
 	@Override

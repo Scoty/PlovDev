@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.proxiad.plovdev.beans.LectureBean;
 import com.proxiad.plovdev.utils.DataParser;
+import com.proxiad.plovdev.utils.ImageUtils;
 
 public class LectureDetailsActivity extends Activity {
 
@@ -38,7 +39,7 @@ public class LectureDetailsActivity extends Activity {
 		TextView nameLectureView = (TextView) findViewById(R.id.nameLecture);
 		TextView descLectureView = (TextView) findViewById(R.id.descLecture);
 
-		speakerImageView.setImageResource(lecture.getSpeaker().getPortraitId());
+		speakerImageView.setImageDrawable(lecture.getSpeaker().getPortraitDrawable());
 		nameLectureView.setText(lecture.getName());
 		descLectureView.setText(lecture.getDescription());
 	}
@@ -52,5 +53,11 @@ public class LectureDetailsActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		getActionBar().setTitle(R.string.title_activity_lecture_details);
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		ImageUtils.cleanupCache();
 	}
 }

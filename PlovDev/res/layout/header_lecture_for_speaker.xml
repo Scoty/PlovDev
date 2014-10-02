@@ -20,7 +20,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#33B5E5"
+        android:textColor="#43b3fb"
         android:textStyle="bold" />
 
     <View
@@ -50,6 +50,6 @@
         android:gravity="center"
         android:text="@string/lecture_list"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#33B5E5" />
+        android:textColor="#43b3fb" />
 
 </RelativeLayout>
