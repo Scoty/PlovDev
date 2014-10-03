@@ -9,7 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 import org.apache.http.Header;
@@ -22,11 +22,9 @@ import android.graphics.BitmapFactory;
 
 import com.proxiad.plovdev.R;
 
-//import java.util.HashMap;
-
 @SuppressLint("SimpleDateFormat")
 public class ImageUtils {
-	private static final ConcurrentHashMap<String, SoftReference<FastBitmapDrawable>> drawablesCache = new ConcurrentHashMap<String, SoftReference<FastBitmapDrawable>>();
+	private static final HashMap<String, SoftReference<FastBitmapDrawable>> drawablesCache = new HashMap<String, SoftReference<FastBitmapDrawable>>();
 
 	private static SimpleDateFormat sLastModifiedFormat;
 

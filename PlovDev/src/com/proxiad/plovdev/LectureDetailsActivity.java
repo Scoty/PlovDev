@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.RatingBar;
 
 import com.proxiad.plovdev.beans.LectureBean;
 import com.proxiad.plovdev.utils.DataParser;
@@ -15,6 +16,8 @@ import com.proxiad.plovdev.utils.ImageUtils;
 public class LectureDetailsActivity extends Activity {
 
 	private int position;
+	private float rating;
+	private RatingBar ratingBar;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -22,8 +25,10 @@ public class LectureDetailsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		if (savedInstanceState != null) {
 			this.position = savedInstanceState.getInt("position");
+			this.rating = savedInstanceState.getFloat("rating");
 		} else {
 			this.position = getIntent().getIntExtra("position", 0);
+			this.rating = 0f;
 		}
 		List<LectureBean> lectureList = (ArrayList<LectureBean>) getIntent().getSerializableExtra("lectureList");
 		LectureBean lecture;
@@ -35,18 +40,22 @@ public class LectureDetailsActivity extends Activity {
 
 		setContentView(R.layout.activity_lecture_details);
 
+		TextView timeTextView = (TextView) findViewById(R.id.time);
 		ImageView speakerImageView = (ImageView) findViewById(R.id.imageSpeakerPortrait);
 		TextView nameLectureView = (TextView) findViewById(R.id.nameLecture);
-		TextView descLectureView = (TextView) findViewById(R.id.descLecture);
+		ratingBar = ((RatingBar) findViewById(R.id.rating));
 
+		timeTextView.setText(lecture.getStartTimeAsString());
 		speakerImageView.setImageDrawable(lecture.getSpeaker().getPortraitDrawable());
 		nameLectureView.setText(lecture.getName());
-		descLectureView.setText(lecture.getDescription());
+		ratingBar.setRating(rating);
 	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		outState.putInt("position", position);
+		rating = ratingBar.getRating();
+		outState.putFloat("rating", rating);
 	}
 
 	@Override

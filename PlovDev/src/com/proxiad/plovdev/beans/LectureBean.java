@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 public class LectureBean implements Serializable {
 
 	private static final long serialVersionUID = 4772024428525844855L;
+	
 	private String startTimeAsString;
 	private Timestamp startTime;
 	private String name;

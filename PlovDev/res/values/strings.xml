@@ -7,6 +7,7 @@
     <string name="speakers">Speakers</string>
     <string name="venue">Venue</string>
     <string name="partners">Partners</string>
+    <string name="about">About</string>
     <!-- ActionBar Buttons Names -->
     <string name="action_refresh">Refresh</string>
     <string name="action_settings">Settings</string>
@@ -25,6 +26,9 @@
     <!-- Partners Fragment -->
     <string name="title_thanks">Special Thanks</string>
     <string name="thanks">We want to say big thanks to our sponsors! Whitout them this event would be just a dream in our eyes. You can tap the images below to go to their webpages and show them some love!</string>
+    <!-- LectureDetails Activity -->
+    <string name="rating_desc">If you want, you can rate the lecture. The vote is anonymous. Please be CARREFUL, you can\'t change your vote!</string>
+    <string name="rate">Rate !</string>
     <!-- SpeakerDetails Activity -->
     <string name="lecture_list">Lectures List:</string>
     <!-- Settings Activity -->
@@ -34,5 +38,5 @@
     <!-- Content Desc -->
     <string name="content_desc_partner">Image of the partner</string>
     <string name="content_desc_main_activity_logo">The logo of PlovDev</string>
-   
+
 </resources>

@@ -549,49 +549,51 @@ containing a value of this type.
         public static final int tab_unselected_pressed_plovdevactionbar=0x7f02004d;
     }
     public static final class id {
-        public static final int action_refresh=0x7f08002b;
-        public static final int action_settings=0x7f08002a;
-        public static final int bioSpeaker=0x7f080023;
+        public static final int action_refresh=0x7f08002d;
+        public static final int action_settings=0x7f08002c;
+        public static final int bioSpeaker=0x7f080026;
         public static final int book_now=0x7f080010;
         public static final int buyButton=0x7f08000a;
         public static final int buy_now=0x7f08000f;
         public static final int buy_with_google=0x7f08000e;
         public static final int classic=0x7f080011;
-        public static final int container=0x7f08001b;
-        public static final int descLecture=0x7f080017;
-        public static final int description=0x7f080027;
-        public static final int drawer_layout=0x7f080018;
+        public static final int container=0x7f08001e;
+        public static final int description=0x7f080029;
+        public static final int drawer_layout=0x7f08001b;
         public static final int grayscale=0x7f080012;
         public static final int holo_dark=0x7f080005;
         public static final int holo_light=0x7f080006;
         public static final int hybrid=0x7f080004;
-        public static final int imageLogoPlovdev=0x7f08001a;
-        public static final int imageSpeakerPortrait=0x7f080014;
-        public static final int lectureListTitle=0x7f080024;
-        public static final int map_container=0x7f080021;
+        public static final int imageLogoPlovdev=0x7f08001d;
+        public static final int imageSpeakerPortrait=0x7f080015;
+        public static final int lectureListTitle=0x7f080027;
+        public static final int map_container=0x7f080024;
         public static final int match_parent=0x7f08000c;
         public static final int monochrome=0x7f080013;
-        public static final int name=0x7f080026;
-        public static final int nameLecture=0x7f080015;
-        public static final int nameSpeaker=0x7f080022;
-        public static final int navigation_drawer=0x7f08001c;
+        public static final int name=0x7f080028;
+        public static final int nameLecture=0x7f080016;
+        public static final int nameSpeaker=0x7f080025;
+        public static final int navigation_drawer=0x7f08001f;
         public static final int none=0x7f080000;
         public static final int normal=0x7f080001;
-        public static final int parent=0x7f080019;
-        public static final int partnerImageView=0x7f080029;
+        public static final int parent=0x7f08001c;
+        public static final int partnerImageView=0x7f08002b;
         public static final int production=0x7f080007;
-        public static final int public_transport_label=0x7f08001f;
-        public static final int public_transport_lines=0x7f080020;
+        public static final int public_transport_label=0x7f080022;
+        public static final int public_transport_lines=0x7f080023;
+        public static final int rating=0x7f080018;
+        public static final int ratingDesc=0x7f080019;
         public static final int sandbox=0x7f080008;
         public static final int satellite=0x7f080002;
         public static final int selectionDetails=0x7f08000b;
-        public static final int separator=0x7f080016;
+        public static final int separator=0x7f080017;
         public static final int strict_sandbox=0x7f080009;
+        public static final int submitRating=0x7f08001a;
         public static final int terrain=0x7f080003;
-        public static final int thanks=0x7f08001e;
-        public static final int thanksTitle=0x7f08001d;
-        public static final int time=0x7f080025;
-        public static final int timePeriod=0x7f080028;
+        public static final int thanks=0x7f080021;
+        public static final int thanksTitle=0x7f080020;
+        public static final int time=0x7f080014;
+        public static final int timePeriod=0x7f08002a;
         public static final int wrap_content=0x7f08000d;
     }
     public static final class integer {
@@ -617,16 +619,17 @@ containing a value of this type.
         public static final int main=0x7f0c0001;
     }
     public static final class string {
-        public static final int List_language_summary=0x7f07002e;
+        public static final int List_language_summary=0x7f070031;
         /**  Settings Activity 
  Settings Activity 
          */
-        public static final int List_language_title=0x7f07002d;
+        public static final int List_language_title=0x7f070030;
+        public static final int about=0x7f07001f;
         /**  ActionBar Buttons Names 
  ActionBar Buttons Names 
          */
-        public static final int action_refresh=0x7f07001f;
-        public static final int action_settings=0x7f070020;
+        public static final int action_refresh=0x7f070020;
+        public static final int action_settings=0x7f070021;
         public static final int app_name=0x7f07001a;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
@@ -717,11 +720,11 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070018;
-        public static final int content_desc_main_activity_logo=0x7f070031;
+        public static final int content_desc_main_activity_logo=0x7f070034;
         /**  Content Desc 
  Content Desc 
          */
-        public static final int content_desc_partner=0x7f070030;
+        public static final int content_desc_partner=0x7f070033;
         /**  Fragment Title Names 
  Fragment Title Names 
          */
@@ -729,33 +732,38 @@ containing a value of this type.
         /**  SpeakerDetails Activity 
  SpeakerDetails Activity 
          */
-        public static final int lecture_list=0x7f07002c;
-        public static final int navigation_drawer_close=0x7f070025;
+        public static final int lecture_list=0x7f07002f;
+        public static final int navigation_drawer_close=0x7f070026;
         /**  Nav Drawer 
  Nav Drawer 
          */
-        public static final int navigation_drawer_open=0x7f070024;
+        public static final int navigation_drawer_open=0x7f070025;
         public static final int partners=0x7f07001e;
         /**  Venue Fragment 
  Venue Fragment 
          */
-        public static final int public_transport_label=0x7f070026;
-        public static final int public_transport_lines=0x7f070027;
-        public static final int snippet=0x7f070029;
+        public static final int public_transport_label=0x7f070027;
+        public static final int public_transport_lines=0x7f070028;
+        public static final int rate=0x7f07002e;
+        /**  LectureDetails Activity 
+ LectureDetails Activity 
+         */
+        public static final int rating_desc=0x7f07002d;
+        public static final int snippet=0x7f07002a;
         public static final int speakers=0x7f07001c;
-        public static final int thanks=0x7f07002b;
+        public static final int thanks=0x7f07002c;
         /**  Activity Titles 
  Activity Titles 
          */
-        public static final int title_activity_lecture_details=0x7f070021;
-        public static final int title_activity_settings=0x7f070023;
-        public static final int title_activity_speaker_details=0x7f070022;
-        public static final int title_location=0x7f070028;
+        public static final int title_activity_lecture_details=0x7f070022;
+        public static final int title_activity_settings=0x7f070024;
+        public static final int title_activity_speaker_details=0x7f070023;
+        public static final int title_location=0x7f070029;
         /**  Partners Fragment 
  Partners Fragment 
          */
-        public static final int title_thanks=0x7f07002a;
-        public static final int toast_text=0x7f07002f;
+        public static final int title_thanks=0x7f07002b;
+        public static final int toast_text=0x7f070032;
         public static final int venue=0x7f07001d;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 

@@ -3,7 +3,7 @@
 
     <string name="app_name">PlovDev</string>
     <!-- Fragment Title Names -->
-    <string name="first_day">Ден 1</string>
+    <string name="first_day">Програмата</string>
     <string name="speakers">Лектори</string>
     <string name="venue">Местоположение</string>
     <string name="partners">Партньори</string>
@@ -25,13 +25,16 @@
     <!-- Partners Fragment -->
     <string name="title_thanks">Специални благодарности</string>
     <string name="thanks">Благодарим на нашите спонсори и ентусиастите, без които събитието щеше да бъде само поредната мисъл родила се в замечтания поглед на един отнесен в мечтите си програмист.</string>
+    <!-- LectureDetails Activity -->
+    <string name="rating_desc">Ако желаете може да оцените лекцията. Вашият вот е анонимен. Моля, бъдете ВНИМАТЕЛНИ, !</string>
+    <string name="rate">Rate !</string>
     <!-- SpeakerDetails Activity -->
     <string name="lecture_list">Списък с лекции:</string>
     <!-- Settings Activity -->
     <string name="List_language_title">Изберете език</string>
     <string name="List_language_summary">Смяна на основния език на приложението</string>
     <string name="toast_text">Трябва да затворите приложението за да влезе в сила промяната на езика!</string>
-     <!-- Content Desc -->
+    <!-- Content Desc -->
     <string name="content_desc_partner">Картинката на спонсора</string>
     <string name="content_desc_main_activity_logo">Логото на PlovDev</string>
 

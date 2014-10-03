@@ -43,6 +43,7 @@ public class DataParser {
 			e1.printStackTrace();
 		}
 		JSONArray speakersJsonArray;
+		
 		if (speakersJsonString != null) {
 			try {
 				speakersJsonArray = new JSONArray(speakersJsonString);
@@ -75,7 +76,7 @@ public class DataParser {
 						}
 
 					}
-					SpeakerBean speaker = new SpeakerBean(speakerDrawable, speakerId, name, imgUrl, personalPageUrl, companyName, companyUrl, bio,
+					SpeakerBean speaker = new SpeakerBean(speakerId, name, imgUrl, personalPageUrl, companyName, companyUrl, bio,
 							new ArrayList<LectureBean>());
 
 					speakers.add(speaker);

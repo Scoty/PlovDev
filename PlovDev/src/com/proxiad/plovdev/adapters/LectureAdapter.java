@@ -45,7 +45,7 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 		viewHolder.imageSpeakerPortraitView.setImageDrawable(lecture.getSpeaker().getPortraitDrawable());
 		viewHolder.timeView.setText(lecture.getStartTimeAsString());
 		viewHolder.nameView.setText(lecture.getName());
-		viewHolder.descriptionView.setText(lecture.getDescription());
+		viewHolder.descriptionView.setText("Инфо за лектора: " + lecture.getSpeaker().getBio());
 
 		return rowView;
 	}

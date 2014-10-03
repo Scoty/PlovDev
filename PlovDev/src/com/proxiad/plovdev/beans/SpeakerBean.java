@@ -3,13 +3,14 @@ package com.proxiad.plovdev.beans;
 import java.io.Serializable;
 import java.util.List;
 
+import com.proxiad.plovdev.utils.ImageUtils;
+
 import android.graphics.drawable.Drawable;
 
 public class SpeakerBean implements Serializable {
 
 	private static final long serialVersionUID = -3559477671554703845L;
 
-	private Drawable portraitDrawable;
 	private String speakerId;
 	private String name;
 	private String imgUrl;
@@ -19,10 +20,9 @@ public class SpeakerBean implements Serializable {
 	private String bio;
 	private List<LectureBean> lectures;
 
-	public SpeakerBean(Drawable portraitDrawable, String speakerId, String name, String imgUrl, String personalPageUrl, String companyName,
+	public SpeakerBean(String speakerId, String name, String imgUrl, String personalPageUrl, String companyName,
 			String companyUrl, String bio, List<LectureBean> lectures) {
 		super();
-		this.portraitDrawable = portraitDrawable;
 		this.speakerId = speakerId;
 		this.name = name;
 		this.imgUrl = imgUrl;
@@ -38,11 +38,7 @@ public class SpeakerBean implements Serializable {
 	}
 
 	public Drawable getPortraitDrawable() {
-		return portraitDrawable;
-	}
-
-	public void setPortraitDrawable(Drawable portraitDrawable) {
-		this.portraitDrawable = portraitDrawable;
+		return ImageUtils.getCachedDrawable(speakerId);
 	}
 
 	public String getSpeakerId() {

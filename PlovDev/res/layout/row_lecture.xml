@@ -9,8 +9,8 @@
 
     <com.proxiad.plovdev.utils.CircularImageView
         android:id="@+id/imageSpeakerPortrait"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         app:border="true"
@@ -34,6 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/imageSpeakerPortrait"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:paddingLeft="4dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#43b3fb"
@@ -45,8 +47,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/name"
         android:layout_toRightOf="@+id/imageSpeakerPortrait"
+        android:ellipsize="end"
         android:maxLines="3"
-        android:paddingLeft="8dp"
+        android:paddingLeft="4dp"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>
