@@ -23,7 +23,7 @@
         <View
             android:id="@+id/separator"
             android:layout_width="match_parent"
-            android:layout_height="0.3dp"
+            android:layout_height="0.4dp"
             android:layout_below="@+id/imageLogoPlovdev"
             android:background="@android:color/darker_gray"
             android:visibility="visible" />

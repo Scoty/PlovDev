@@ -30,11 +30,13 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 	private final String speakersFragmentTag = "speakersFragment";
 	private final String venueFragmentTag = "venueFragment";
 	private final String partnersFragmentTag = "partnersFragment";
+	private final String aboutFragmentTag = "aboutFragment";
 
 	private Fragment mainFragment;
 	private Fragment speakersFragment;
 	private Fragment venueFragment;
 	private Fragment partnersFragment;
+	private Fragment aboutFragment;
 
 	private NavigationDrawerFragment mNavigationDrawerFragment;
 	// holds the position of the currently selected item in the Nav Drawer
@@ -74,6 +76,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 		speakersFragment = fragmentManager.getFragment(savedInstanceState, speakersFragmentTag);
 		venueFragment = fragmentManager.getFragment(savedInstanceState, venueFragmentTag);
 		partnersFragment = fragmentManager.getFragment(savedInstanceState, partnersFragmentTag);
+		aboutFragment = fragmentManager.getFragment(savedInstanceState, aboutFragmentTag);
 		position = savedInstanceState.getInt("position");
 		onNavigationDrawerItemSelected(position);
 	}
@@ -97,6 +100,9 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 		}
 		if (partnersFragment != null) {
 			fragmentManager.putFragment(outState, partnersFragmentTag, partnersFragment);
+		}
+		if (aboutFragment != null) {
+			fragmentManager.putFragment(outState, aboutFragmentTag, aboutFragment);
 		}
 	}
 
@@ -142,6 +148,15 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 				fragmentManager.beginTransaction().add(R.id.container, partnersFragment, partnersFragmentTag).commit();
 			}
 			fragmentManager.beginTransaction().show(partnersFragment).commit();
+			break;
+		case 4:
+			mTitle = getString(R.string.about);
+			aboutFragment = fragmentManager.findFragmentByTag(aboutFragmentTag);
+			if (aboutFragment == null) {
+				aboutFragment = new AboutFragment();
+				fragmentManager.beginTransaction().add(R.id.container, aboutFragment, aboutFragmentTag).commit();
+			}
+			fragmentManager.beginTransaction().show(aboutFragment).commit();
 		}
 	}
 

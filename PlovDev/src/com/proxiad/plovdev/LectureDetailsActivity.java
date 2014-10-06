@@ -4,7 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.opengl.Visibility;
 import android.os.Bundle;
+import android.text.Layout;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.RatingBar;
@@ -18,6 +25,7 @@ public class LectureDetailsActivity extends Activity {
 	private int position;
 	private float rating;
 	private RatingBar ratingBar;
+	private boolean isRateClicked;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -44,11 +52,23 @@ public class LectureDetailsActivity extends Activity {
 		ImageView speakerImageView = (ImageView) findViewById(R.id.imageSpeakerPortrait);
 		TextView nameLectureView = (TextView) findViewById(R.id.nameLecture);
 		ratingBar = ((RatingBar) findViewById(R.id.rating));
+		final Button rateButton = (Button) findViewById(R.id.buttonSubmitRating);
 
 		timeTextView.setText(lecture.getStartTimeAsString());
 		speakerImageView.setImageDrawable(lecture.getSpeaker().getPortraitDrawable());
 		nameLectureView.setText(lecture.getName());
 		ratingBar.setRating(rating);
+		final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.anim_alpha);
+		rateButton.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (!isRateClicked) {
+					v.startAnimation(animAlpha);
+					isRateClicked = true;
+				}
+			}
+		});
+
 	}
 
 	@Override

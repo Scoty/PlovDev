@@ -4,22 +4,15 @@
     android:layout_height="wrap_content" >
 
     <TextView
-        android:id="@+id/timePeriod"
+        android:id="@+id/time_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:maxLines="1"
+        android:maxLines="2"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#33B5E5"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/timePeriod"
-        android:paddingRight="2dp"
-        android:maxLines="3"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+ 
 
 </RelativeLayout>

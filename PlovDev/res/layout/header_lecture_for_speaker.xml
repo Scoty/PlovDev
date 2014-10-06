@@ -39,7 +39,7 @@
         android:layout_below="@+id/separator"
         android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-
+    
     <TextView
         android:id="@+id/lectureListTitle"
         android:layout_width="match_parent"

@@ -31,22 +31,19 @@ public class LectureForSpeakerAdapter extends ArrayAdapter<LectureBean> {
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			rowView = inflater.inflate(R.layout.row_lecture_for_speaker, parent, false);
 			viewHolder = new ViewHolder();
-			viewHolder.timePeriodView = (TextView) rowView.findViewById(R.id.timePeriod);
-			viewHolder.descriptionView = (TextView) rowView.findViewById(R.id.description);
+			viewHolder.timeNameView = (TextView) rowView.findViewById(R.id.time_name);
 			rowView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) rowView.getTag();
 		}
 
 		LectureBean lecture = itemsArrayList.get(position);
-		viewHolder.timePeriodView.setText(lecture.getTimePeriodName());
-		viewHolder.descriptionView.setText(lecture.getDescription());
-
+		viewHolder.timeNameView.setText(lecture.getStartTimeAsString() + " " + lecture.getName());
+	
 		return rowView;
 	}
 
 	static class ViewHolder {
-		TextView timePeriodView;
-		TextView descriptionView;
+		TextView timeNameView;
 	}
 }
