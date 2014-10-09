@@ -85,6 +85,8 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/rectangle_blue_rounded"
             android:gravity="center"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
             android:text="@string/rate"
             android:textColor="#ffffff" />
     </RelativeLayout>

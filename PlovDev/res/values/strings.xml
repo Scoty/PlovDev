@@ -20,7 +20,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <!-- Venue Fragment -->
     <string name="public_transport_label">Public Transport Lines</string>
-    <string name="public_transport_lines">You can reach the venue using one of the following bus lines: 1, 10, 111. You can tap on the marker below to start navigation from your location to the event\'s place.</string>
+    <string name="public_transport_lines">You can reach the venue using one of the following bus lines: 1, 4, 7, 9, 15, 25, 27. You can tap on the marker below to start navigation from your location to the event\'s place.</string>
     <string name="title_location">International fair</string>
     <string name="snippet">Tsar Boris III Blvd 37</string>
     <!-- Partners Fragment -->

@@ -20,7 +20,7 @@
     <string name="navigation_drawer_close">Затвори навигационото меню</string>
     <!-- Venue Fragment -->
     <string name="public_transport_label">Градски Транспорт</string>
-    <string name="public_transport_lines">Може да се привижите до мястото с автобусни линии №: 1, 10, 111. Може да натиснете върху маркера за стартиране на навигация до мястото на събитието.</string>
+    <string name="public_transport_lines">Може да се привижите до мястото с автобусни линии №: 1, 4, 7, 9, 15, 25, 27. Може да натиснете върху маркера за стартиране на навигация до мястото на събитието.</string>
     <string name="title_location">Международен панаир</string>
     <string name="snippet">Бул. Цар Борис III 37</string>
     <!-- Partners Fragment -->

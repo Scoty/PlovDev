@@ -58,12 +58,14 @@ public class VenueFragment extends Fragment {
 
 				@Override
 				public boolean onMarkerClick(Marker arg0) {
-					double myLat = map.getMyLocation().getLatitude();
-					double myLon = map.getMyLocation().getLongitude();
-					String url = "http://maps.google.com/maps?saddr=" + myLat + "," + myLon + "&daddr=" + PLOVDEV_LAT + "," + PLOVDEV_LNG;
-					Intent startNavigation = new Intent(Intent.ACTION_VIEW);
-					startNavigation.setData(Uri.parse(url));
-					startActivity(startNavigation);
+					if (map.getMyLocation() != null) {
+						double myLat = map.getMyLocation().getLatitude();
+						double myLon = map.getMyLocation().getLongitude();
+						String url = "http://maps.google.com/maps?saddr=" + myLat + "," + myLon + "&daddr=" + PLOVDEV_LAT + "," + PLOVDEV_LNG;
+						Intent startNavigation = new Intent(Intent.ACTION_VIEW);
+						startNavigation.setData(Uri.parse(url));
+						startActivity(startNavigation);
+					}
 					return false;
 				}
 			});
