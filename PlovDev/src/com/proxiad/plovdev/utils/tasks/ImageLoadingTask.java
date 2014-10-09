@@ -1,4 +1,4 @@
-package com.proxiad.plovdev.utils;
+package com.proxiad.plovdev.utils.tasks;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -15,6 +15,9 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.proxiad.plovdev.utils.HttpManager;
+import com.proxiad.plovdev.utils.IOUtils;
+import com.proxiad.plovdev.utils.ImageUtils;
 import com.proxiad.plovdev.utils.ImageUtils.ExpiringBitmap;
 
 public class ImageLoadingTask extends AsyncTask<String, Void, ExpiringBitmap> {

@@ -39,17 +39,18 @@
         android:layout_below="@+id/separator"
         android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-    
+
     <TextView
         android:id="@+id/lectureListTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bioSpeaker"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
         android:gravity="center"
+        android:paddingBottom="8dp"
         android:text="@string/lecture_list"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#43b3fb" />
+        android:textColor="#43b3fb"
+        android:textStyle="bold" />
 
 </RelativeLayout>

@@ -40,7 +40,7 @@ public class PartnerAdapter extends ArrayAdapter<PartnerBean> {
 		}
 
 		final PartnerBean partner = itemsArrayList.get(position);
-		viewHolder.partnerImageView.setImageResource(partner.getPortraitId());
+		viewHolder.partnerImageView.setImageDrawable(partner.getImageDrawable());
 		viewHolder.partnerImageView.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(partner.getUrlLink()));

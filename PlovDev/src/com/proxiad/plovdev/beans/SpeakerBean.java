@@ -20,8 +20,14 @@ public class SpeakerBean implements Serializable {
 	private String bio;
 	private List<LectureBean> lectures;
 
-	public SpeakerBean(String speakerId, String name, String imgUrl, String personalPageUrl, String companyName,
-			String companyUrl, String bio, List<LectureBean> lectures) {
+	public SpeakerBean(String speakerId, List<LectureBean> lectures) {
+		super();
+		this.speakerId = speakerId;
+		this.lectures = lectures;
+	}
+
+	public SpeakerBean(String speakerId, String name, String imgUrl, String personalPageUrl, String companyName, String companyUrl, String bio,
+			List<LectureBean> lectures) {
 		super();
 		this.speakerId = speakerId;
 		this.name = name;
@@ -109,8 +115,7 @@ public class SpeakerBean implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((bio == null) ? 0 : bio.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((speakerId == null) ? 0 : speakerId.hashCode());
 		return result;
 	}
 
@@ -123,18 +128,12 @@ public class SpeakerBean implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		SpeakerBean other = (SpeakerBean) obj;
-		if (bio == null) {
-			if (other.bio != null)
+		if (speakerId == null) {
+			if (other.speakerId != null)
 				return false;
-		} else if (!bio.equals(other.bio))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
+		} else if (!speakerId.equals(other.speakerId))
 			return false;
 		return true;
 	}
-
 
 }

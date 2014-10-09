@@ -1,5 +1,7 @@
 package com.proxiad.plovdev;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,14 +11,18 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class VenueFragment extends Fragment {
 
-	private final LatLng PLOVDEV = new LatLng(42.156460, 24.754438);
+	private final double PLOVDEV_LAT = 42.1564311d;
+	private final double PLOVDEV_LNG = 24.7546284d;
+	private final LatLng PLOVDEV_LOC = new LatLng(PLOVDEV_LAT, PLOVDEV_LNG);
 	private GoogleMap map;
 	private SupportMapFragment mMapFragment;
 	private CameraPosition cameraPosition;
@@ -39,10 +45,6 @@ public class VenueFragment extends Fragment {
 		return view;
 	}
 
-	/**
-	 * TODO: Clickable marker TODO: Current location TODO: Navigation
-	 */
-
 	@Override
 	public void onStart() {
 		super.onStart();
@@ -50,9 +52,23 @@ public class VenueFragment extends Fragment {
 		if (map != null) {
 			String titleLocation = getString(R.string.title_location);
 			String snippet = getString(R.string.snippet);
-			map.addMarker(new MarkerOptions().position(PLOVDEV).title(titleLocation).snippet(snippet)).showInfoWindow();
+			map.addMarker(new MarkerOptions().position(PLOVDEV_LOC).title(titleLocation).snippet(snippet)).showInfoWindow();
+			map.setMyLocationEnabled(true);
+			map.setOnMarkerClickListener(new OnMarkerClickListener() {
+
+				@Override
+				public boolean onMarkerClick(Marker arg0) {
+					double myLat = map.getMyLocation().getLatitude();
+					double myLon = map.getMyLocation().getLongitude();
+					String url = "http://maps.google.com/maps?saddr=" + myLat + "," + myLon + "&daddr=" + PLOVDEV_LAT + "," + PLOVDEV_LNG;
+					Intent startNavigation = new Intent(Intent.ACTION_VIEW);
+					startNavigation.setData(Uri.parse(url));
+					startActivity(startNavigation);
+					return false;
+				}
+			});
 			if (cameraPosition == null) {
-				map.animateCamera(CameraUpdateFactory.newLatLngZoom(PLOVDEV, 15));
+				map.animateCamera(CameraUpdateFactory.newLatLngZoom(PLOVDEV_LOC, 15));
 			} else {
 				map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 			}

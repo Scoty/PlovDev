@@ -19,14 +19,18 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.proxiad.plovdev.R;
+import com.proxiad.plovdev.utils.tasks.ImageLoadingTask;
 
 @SuppressLint("SimpleDateFormat")
 public class ImageUtils {
 	private static final HashMap<String, SoftReference<FastBitmapDrawable>> drawablesCache = new HashMap<String, SoftReference<FastBitmapDrawable>>();
 
 	private static SimpleDateFormat sLastModifiedFormat;
+
+	private static final String LOG_TAG = "ImageUtils";
 
 	private ImageUtils() {
 	}
@@ -61,6 +65,7 @@ public class ImageUtils {
 		}
 
 		if (drawable == null) {
+			// Log.e("Loading bitmpa", drawablesCache.entrySet().toString());
 			final Bitmap bitmap = loadBitmap(id);
 			if (bitmap != null) {
 				drawable = new FastBitmapDrawable(bitmap);
@@ -83,8 +88,26 @@ public class ImageUtils {
 			drawable = new FastBitmapDrawable(bitmap);
 			drawablesCache.put(defaultId, new SoftReference<FastBitmapDrawable>(drawable));
 		}
-
 		return drawable;
+	}
+
+	public static void putPlaceHolderDrawablesInCache(Context context) {
+
+		Bitmap bitmap1 = BitmapFactory.decodeResource(context.getResources(), R.drawable.coffee_icon);
+		ImportUtils.addSpeakerPortraitToCache("coffee", bitmap1);
+
+		Bitmap bitmap2 = BitmapFactory.decodeResource(context.getResources(), R.drawable.global_icon);
+		ImportUtils.addSpeakerPortraitToCache("signin", bitmap2);
+
+		Bitmap bitmap3 = BitmapFactory.decodeResource(context.getResources(), R.drawable.catering_icon);
+		ImportUtils.addSpeakerPortraitToCache("food", bitmap3);
+
+		Bitmap bitmap4 = BitmapFactory.decodeResource(context.getResources(), R.drawable.msg_icon);
+		ImportUtils.addSpeakerPortraitToCache("comments-alt", bitmap4);
+
+		Bitmap bitmap5 = BitmapFactory.decodeResource(context.getResources(), R.drawable.home_icon);
+		ImportUtils.addSpeakerPortraitToCache("signout", bitmap5);
+
 	}
 
 	/**
@@ -128,12 +151,10 @@ public class ImageUtils {
 		ExpiringBitmap expiring = null;
 		try {
 			expiring = new ImageLoadingTask().execute(url).get();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ExecutionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (InterruptedException e) {
+			Log.e(LOG_TAG, "Can't load image", e);
+		} catch (ExecutionException e) {
+			Log.e(LOG_TAG, "Can't load image", e);
 		}
 		return expiring;
 	}
@@ -156,6 +177,14 @@ public class ImageUtils {
 		} catch (ParseException e) {
 			// Ignore
 		}
+	}
+
+	public static void invalidateCache() {
+		cleanupCache();
+		for (String id : drawablesCache.keySet()) {
+			new File(ImportUtils.getCacheDirectory(), id).delete();
+		}
+		drawablesCache.clear();
 	}
 
 	private static Bitmap loadBitmap(String id) {

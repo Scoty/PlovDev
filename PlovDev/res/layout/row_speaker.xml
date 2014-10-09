@@ -32,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageSpeakerPortrait"
         android:layout_centerHorizontal="true"
+        android:ellipsize="end"
         android:maxLines="3"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"

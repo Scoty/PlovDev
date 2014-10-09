@@ -202,7 +202,7 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
 	}
 
 	/**
-	 * Click listener for handling the clicks of the logo Used in
+	 * Click listener for handling the clicks of the logo used in
 	 * activity_main.xml
 	 * 
 	 * @param View

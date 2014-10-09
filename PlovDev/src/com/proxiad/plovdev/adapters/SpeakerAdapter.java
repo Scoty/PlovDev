@@ -3,6 +3,7 @@ package com.proxiad.plovdev.adapters;
 import java.util.List;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class SpeakerAdapter extends ArrayAdapter<SpeakerBean> {
 		super(context, R.layout.row_speaker, itemsArrayList);
 		this.context = context;
 		this.itemsArrayList = itemsArrayList;
+
 	}
 
 	@Override
@@ -39,15 +41,14 @@ public class SpeakerAdapter extends ArrayAdapter<SpeakerBean> {
 		} else {
 			viewHolder = (ViewHolder) rowView.getTag();
 		}
-		
 		SpeakerBean speaker = itemsArrayList.get(position);
 		viewHolder.imageSpeakerPortraitView.setImageDrawable(speaker.getPortraitDrawable());
 		viewHolder.nameSpeakerView.setText(speaker.getName());
-		viewHolder.bioSpeakerView.setText(speaker.getBio());
+		viewHolder.bioSpeakerView.setText(Html.fromHtml(speaker.getBio()));
 
 		return rowView;
 	}
-	
+
 	static class ViewHolder {
 		ImageView imageSpeakerPortraitView;
 		TextView nameSpeakerView;

@@ -204,7 +204,7 @@ public class CircularImageView extends ImageView {
 	 * @param color
 	 */
 	public void setShadow(float radius, float dx, float dy, int color) {
-		// TODO
+		// TODO implement this method
 	}
 
 	@Override

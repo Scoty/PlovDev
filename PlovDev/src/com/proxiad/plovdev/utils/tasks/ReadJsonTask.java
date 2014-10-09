@@ -1,4 +1,4 @@
-package com.proxiad.plovdev.utils;
+package com.proxiad.plovdev.utils.tasks;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -8,9 +8,14 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 
-import android.os.AsyncTask;
+import com.proxiad.plovdev.utils.HttpManager;
 
-public class JsonUtils extends AsyncTask<String, Void, String> {
+import android.os.AsyncTask;
+import android.util.Log;
+
+public class ReadJsonTask extends AsyncTask<String, Void, String> {
+	private static final String LOG_TAG = "ReadJsonTask";
+
 	// TODO display progress bar
 	@Override
 	protected String doInBackground(String... params) {
@@ -32,12 +37,13 @@ public class JsonUtils extends AsyncTask<String, Void, String> {
 			}
 			result = sb.toString();
 		} catch (Exception e) {
-			e.printStackTrace();
+			Log.e(LOG_TAG, "Error connecting", e);
 		} finally {
 			try {
 				if (inputStream != null)
 					inputStream.close();
-			} catch (Exception squish) {
+			} catch (Exception e) {
+				Log.e(LOG_TAG, "Could not close stream", e);
 			}
 		}
 		return result;

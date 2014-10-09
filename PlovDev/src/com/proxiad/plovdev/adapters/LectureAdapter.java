@@ -45,7 +45,15 @@ public class LectureAdapter extends ArrayAdapter<LectureBean> {
 		viewHolder.imageSpeakerPortraitView.setImageDrawable(lecture.getSpeaker().getPortraitDrawable());
 		viewHolder.timeView.setText(lecture.getStartTimeAsString());
 		viewHolder.nameView.setText(lecture.getName());
-		viewHolder.descriptionView.setText("Инфо за лектора: " + lecture.getSpeaker().getBio());
+		if (lecture.getSpeaker().getBio() != null && !lecture.getSpeaker().getBio().isEmpty()) {
+			viewHolder.descriptionView.setText(R.string.rating_desc);
+			// TODO Why this works backwards?
+			rowView.setClickable(false);
+		} else {
+			viewHolder.descriptionView.setText("");
+			// TODO Why this works backwards?
+			rowView.setClickable(true);
+		}
 
 		return rowView;
 	}

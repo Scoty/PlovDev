@@ -9,6 +9,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpHost;
 import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.methods.HttpGet;
+//import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.params.HttpClientParams;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -58,4 +59,11 @@ public class HttpManager {
 	public static HttpResponse execute(HttpGet get) throws IOException {
 		return sClient.execute(get);
 	}
+
+	// Post requests are not needed atm
+
+	// public static HttpResponse execute(HttpPost post) throws IOException {
+	// return sClient.execute(post);
+	// }
+
 }

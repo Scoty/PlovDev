@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -41,7 +42,7 @@ public class SpeakerDetailsActivity extends ListActivity {
 
 		speakerImageView.setImageDrawable(speaker.getPortraitDrawable());
 		nameSpeakerView.setText(speaker.getName());
-		bioSpeakerView.setText(speaker.getBio());
+		bioSpeakerView.setText(Html.fromHtml(speaker.getBio()));
 
 		ListView listView = getListView();
 		listView.addHeaderView(header);

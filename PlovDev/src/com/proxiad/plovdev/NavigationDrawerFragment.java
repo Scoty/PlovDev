@@ -1,5 +1,7 @@
 package com.proxiad.plovdev;
 
+import com.proxiad.plovdev.utils.DataParser;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -103,7 +105,7 @@ public class NavigationDrawerFragment extends Fragment {
 		});
 		mDrawerListView.setAdapter(new ArrayAdapter<String>(getActionBar().getThemedContext(), android.R.layout.simple_list_item_activated_1,
 				android.R.id.text1, new String[] { getString(R.string.first_day), getString(R.string.speakers), getString(R.string.venue),
-						getString(R.string.partners), getString(R.string.about)}));
+						getString(R.string.partners), getString(R.string.about) }));
 		mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 		return mDrawerListView;
 	}
@@ -266,7 +268,8 @@ public class NavigationDrawerFragment extends Fragment {
 		}
 
 		if (item.getItemId() == R.id.action_refresh) {
-			Toast.makeText(getActivity(), "Refresh not implemented!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(), "Refreshing...", Toast.LENGTH_LONG).show();
+			DataParser.refreshData();
 			return true;
 		}
 

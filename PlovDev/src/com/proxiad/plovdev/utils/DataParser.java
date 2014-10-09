@@ -2,6 +2,7 @@ package com.proxiad.plovdev.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
@@ -11,39 +12,43 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
-import com.proxiad.plovdev.R;
 import com.proxiad.plovdev.beans.LectureBean;
 import com.proxiad.plovdev.beans.PartnerBean;
 import com.proxiad.plovdev.beans.SpeakerBean;
+import com.proxiad.plovdev.utils.tasks.ReadJsonTask;
 
 public class DataParser {
 
+	private static final String LOG_TAG = "DataParser";
+
 	public static Context context;
 
-	private static final String URL_WEB_PAGE = "http://2013.plovdev.com/";
+	private static final String URL_WEB_PAGE = "http://2014.plovdev.com/";
 	private static final String URL_SPEAKERS = URL_WEB_PAGE + "data/speakers.json";
 	private static final String URL_LECTURES = URL_WEB_PAGE + "data/program.json";
+	private static final String URL_PARTNERS = URL_WEB_PAGE + "data/partners.json";
 
 	private static boolean isDataParsed;
 
 	private static List<LectureBean> lectures;
 	private static List<SpeakerBean> speakers;
+	private static List<SpeakerBean> speakersClean;
+	private static List<PartnerBean> partners;
 
 	private static void parseData() {
 		// parse speakers json
 		String speakersJsonString = null;
 		try {
-			speakersJsonString = new JsonUtils().execute(URL_SPEAKERS).get();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ExecutionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			speakersJsonString = new ReadJsonTask().execute(URL_SPEAKERS).get();
+		} catch (InterruptedException e) {
+			Log.e(LOG_TAG, "Task interupted!", e);
+		} catch (ExecutionException e) {
+			Log.e(LOG_TAG, "Execution failed!", e);
 		}
 		JSONArray speakersJsonArray;
-		
+
 		if (speakersJsonString != null) {
 			try {
 				speakersJsonArray = new JSONArray(speakersJsonString);
@@ -78,25 +83,21 @@ public class DataParser {
 					}
 					SpeakerBean speaker = new SpeakerBean(speakerId, name, imgUrl, personalPageUrl, companyName, companyUrl, bio,
 							new ArrayList<LectureBean>());
-
 					speakers.add(speaker);
 				}
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e(LOG_TAG, "JSON Exception!", e);
 			}
 		}
 
 		// parse lectures json
 		String lecturesJsonString = null;
 		try {
-			lecturesJsonString = new JsonUtils().execute(URL_LECTURES).get();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (ExecutionException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			lecturesJsonString = new ReadJsonTask().execute(URL_LECTURES).get();
+		} catch (InterruptedException e) {
+			Log.e(LOG_TAG, "Task interupted!", e);
+		} catch (ExecutionException e) {
+			Log.e(LOG_TAG, "Execution failed!", e);
 		}
 		JSONArray lecturesJsonArray;
 		if (lecturesJsonString != null) {
@@ -107,25 +108,26 @@ public class DataParser {
 					JSONObject lectureJson = lecturesJsonArray.getJSONObject(i);
 					String startTimeAsString = getStringFromJson(lectureJson, "start");
 					String name = getStringFromJson(lectureJson, "title");
-					LectureBean lecture;
+
+					String speakerId;
 					if (lectureJson.has("speaker")) {
-						String speakerId = getStringFromJson(lectureJson.getJSONObject("speaker"), "id");
-						lecture = new LectureBean(startTimeAsString, name, speakerId);
-						lectures.add(lecture);
+						speakerId = getStringFromJson(lectureJson.getJSONObject("speaker"), "id");
 					} else {
-						// String icon = getStringFromJson(lectureJson, "icon");
-						// lecture = new LectureBean(startTimeAsString, name,
-						// icon);
+						speakerId = getStringFromJson(lectureJson, "icon");
+						// add new placeholder speaker for the image
+						SpeakerBean speaker = new SpeakerBean(speakerId, new ArrayList<LectureBean>());
+						// TODO may be use Set here instead
+						if (!speakers.contains(speaker)) {
+							speakers.add(new SpeakerBean(speakerId, new ArrayList<LectureBean>()));
+						}
 					}
-					// lectures.add(lecture);
+					LectureBean lecture = new LectureBean(startTimeAsString, name, speakerId);
+					lectures.add(lecture);
 				}
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.e(LOG_TAG, "JSON Exception!", e);
 			}
 		}
-
-		// getStringFromJson(""); PARTNERS
 
 		for (LectureBean lecture : lectures) {
 			for (SpeakerBean speaker : speakers) {
@@ -135,6 +137,62 @@ public class DataParser {
 				}
 			}
 		}
+		// TODO Clear this logic, it is bad design
+		speakersClean = new ArrayList<SpeakerBean>(speakers);
+
+		ListIterator<SpeakerBean> listIterator = speakersClean.listIterator();
+
+		while (listIterator.hasNext()) {
+			SpeakerBean speaker = listIterator.next();
+			if (speaker.getImgUrl() == null) {
+				listIterator.remove();
+			}
+		}
+
+		ImageUtils.putPlaceHolderDrawablesInCache(context);
+
+		// parse partners json
+		String partnersJsonString = null;
+		try {
+			partnersJsonString = new ReadJsonTask().execute(URL_PARTNERS).get();
+		} catch (InterruptedException e) {
+			Log.e(LOG_TAG, "Task interupted!", e);
+		} catch (ExecutionException e) {
+			Log.e(LOG_TAG, "Execution failed!", e);
+		}
+		JSONArray partnersJsonArray;
+
+		if (partnersJsonString != null) {
+			try {
+				partnersJsonArray = new JSONArray(partnersJsonString);
+				partners = new ArrayList<PartnerBean>();
+				for (int i = 0; i < partnersJsonArray.length(); i++) {
+					JSONObject partnersJson = partnersJsonArray.getJSONObject(i);
+
+					String title = getStringFromJson(partnersJson, "title");
+					String urlLink = getStringFromJson(partnersJson, "url");
+					String logoLink = getStringFromJson(partnersJson, "logo");
+
+					Drawable partnerDrawable = ImageUtils.getCachedDrawable(title);
+
+					if (partnerDrawable == null) {
+						Bitmap bitmap = ImageUtils.load(URL_WEB_PAGE + logoLink).bitmap;
+						if (bitmap != null) {
+							ImportUtils.addSpeakerPortraitToCache(title, bitmap);
+							partnerDrawable = ImageUtils.getCachedDrawable(title);
+						} else {
+							partnerDrawable = ImageUtils.getDefaultDrawable(context);
+						}
+					}
+					PartnerBean partner = new PartnerBean(title, urlLink);
+					partners.add(partner);
+				}
+			} catch (JSONException e) {
+				Log.e(LOG_TAG, "JSON Exception!", e);
+			}
+		}
+
+		isDataParsed = true;
 	}
 
 	public static List<LectureBean> getLectures() {
@@ -148,38 +206,10 @@ public class DataParser {
 		if (!isDataParsed) {
 			parseData();
 		}
-		return speakers;
+		return speakersClean;
 	}
 
 	public static List<PartnerBean> getPartners() {
-		// Proxiad
-		int portraitId = R.drawable.partner_proxiad;
-		String urlLink = "http://www.proxiad.com";
-		PartnerBean partProxiad = new PartnerBean(portraitId, urlLink);
-		// Proxiad Tech Exchange
-		portraitId = R.drawable.partner_ptx;
-		urlLink = "http://www.proxiad.com";
-		PartnerBean partPtx = new PartnerBean(portraitId, urlLink);
-		// HacKafe
-		portraitId = R.drawable.partner_hackafe;
-		urlLink = "http://hackafe.org/";
-		PartnerBean partHacKafe = new PartnerBean(portraitId, urlLink);
-		// PuSS
-		portraitId = R.drawable.partner_pu_ss;
-		urlLink = "https://uni-plovdiv.bg/pages/index/16/";
-		PartnerBean partPuSS = new PartnerBean(portraitId, urlLink);
-		// MediaCafe
-		portraitId = R.drawable.partner_media_cafe;
-		urlLink = "http://mediacafe.bg/";
-		PartnerBean partMediaCafe = new PartnerBean(portraitId, urlLink);
-
-		List<PartnerBean> partners = new ArrayList<PartnerBean>();
-		partners.add(partProxiad);
-		partners.add(partPtx);
-		partners.add(partHacKafe);
-		partners.add(partPuSS);
-		partners.add(partMediaCafe);
-
 		return partners;
 	}
 
@@ -188,7 +218,12 @@ public class DataParser {
 	}
 
 	public static SpeakerBean getSpeaker(int location) {
-		return speakers.get(location);
+		return speakersClean.get(location);
+	}
+
+	public static void refreshData() {
+		ImageUtils.invalidateCache();
+		isDataParsed = false;
 	}
 
 	private static String getStringFromJson(JSONObject json, String name) throws JSONException {

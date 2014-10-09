@@ -4,17 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.opengl.Visibility;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.RatingBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.proxiad.plovdev.beans.LectureBean;
 import com.proxiad.plovdev.utils.DataParser;
@@ -65,6 +63,9 @@ public class LectureDetailsActivity extends Activity {
 				if (!isRateClicked) {
 					v.startAnimation(animAlpha);
 					isRateClicked = true;
+					Toast.makeText(v.getContext(), R.string.toast_rating_not_yet_avaible, Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(v.getContext(), R.string.toast_already_voted, Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
